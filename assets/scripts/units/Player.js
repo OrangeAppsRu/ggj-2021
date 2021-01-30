@@ -1,10 +1,12 @@
+import {Config} from "../../config";
 
 /**
  * @Class
  */
+
 export class Player{
-    _oxygen = 0;
-    _energy = 0;
+    _oxygen = Config.maxOxygen;
+    _energy = Config.maxEnergy;
     _inventory = [];
 
     get energy() {
@@ -31,31 +33,11 @@ export class Player{
         this._inventory = items
     }
 
-    isPossibleMove(cost) {
-        return this.oxygen.get() - cost > 0;
-    }
-
-    addOxygen(amount) {
-        this._oxygen += amount;
-    }
-
-    removeOxygen(amount) {
-        this._oxygen -= amount;
-    }
-
     addInventory(item) {
         this._inventory.push(item);
     }
 
     hasItem(item) {
         return this._inventory.indexOf(item) !== -1;
-    }
-    
-    addEnergy(amount) {
-        this._energy += amount;
-    }
-    
-    removeEnergy(amount) {
-        this._energy -= amount;
     }
 }
