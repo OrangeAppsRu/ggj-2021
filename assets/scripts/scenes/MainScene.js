@@ -80,7 +80,7 @@ export default class MainScene extends BaseScene {
             this._currentEntity.node.runAction(cc.sequence([
                 cc.spawn([
                     cc.moveTo(0.5, position),
-                    cc.callFunc(() => this._hero.playMoveAnimation()),
+                    cc.callFunc(() => this._hero.playMoveAnimation(direction)),
                 ]),
                 cc.callFunc(() => this._gameMap.highlightMove(toTile)),
                 cc.callFunc(() => this._centerGameMap()),
