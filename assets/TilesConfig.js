@@ -1,3 +1,5 @@
+import {Config} from './config';
+
 export const Tiles = {
     dirt: 101,
     grass: 102,
@@ -7,30 +9,25 @@ export const Tiles = {
     acid: 202,
     shrubbery: 301,
     animals: 302,
-    quickSand: 401,
-    waterAmbush: 402,
-    liana: 403,
-    beast: 404,
-    moss: 501,
-    geyser: 502
+    base: 401
 };
 
 export const TilePrices = [
     {
         type: Tiles.dirt,
-        oxygenDemand: 1,
+        oxygen: 1,
     },
     {
         type: Tiles.grass,
-        oxygenDemand: 1,
+        oxygen: 1,
     },
     {
         type: Tiles.mud,
-        oxygenDemand: 2,
+        oxygen: 2,
     },
     {
         type: Tiles.water,
-        oxygenDemand: 3,
+        oxygen: 3,
     },
     {
         type: Tiles.mountain,
@@ -42,12 +39,17 @@ export const TilePrices = [
     },
     {
         type: Tiles.shrubbery,
-        oxygenDemand: 3,
-        energyDemand: 1
+        oxygen: 3,
+        energy: 1
     },
     {
         type: Tiles.animals,
-        oxygenDemand: 2,
-        energyDemand: 2
+        oxygen: 2,
+        energy: 2
+    },
+    {
+        type: Tiles.base,
+        oxygenSupply: Config.maxOxygen,
+        energySupply: Config.maxEnergy
     }
 ];
