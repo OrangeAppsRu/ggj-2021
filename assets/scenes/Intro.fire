@@ -1199,6 +1199,9 @@
       "__id__": 2
     },
     "_enabled": true,
+    "window": {
+      "__uuid__": "a97cd619-ddcb-4f36-a714-80c91892075c"
+    },
     "_id": "48xOqlRx5CVYA10q9fzFEr"
   }
 ]
