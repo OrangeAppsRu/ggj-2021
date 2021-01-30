@@ -82,6 +82,8 @@ export default class MainScene extends BaseScene {
                 cc.callFunc(() => this._gameMap.highlightMove(toTile)),
                 cc.callFunc(() => this._centerGameMap()),
             ]));
+
+            this._gameMap.getObject();
         }
     }
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.1" orientation="isometric" renderorder="right-down" compressionlevel="-1" width="25" height="25" tilewidth="173" tileheight="87" infinite="0" nextlayerid="6" nextobjectid="2">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer id="1" name="tiles" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjY2BgYBvFo3gUj+JRPIqHAeaB4oF2B7X9NNBuGMWDEwMA4ZUOuQ==
+  </data>
+ </layer>
+ <layer id="2" name="selection" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzjZWBg4KUDpiUYtWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA4p0E4Q==
+  </data>
+ </layer>
+ <objectgroup id="5" name="objects">
+  <object id="1" gid="11" x="1539.27" y="1618.73" width="208" height="142"/>
+ </objectgroup>
+ <layer id="3" name="entities" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzjZWBg4KUDpiUYtWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA4p0E4Q==
+  </data>
+ </layer>
+ <layer id="4" name="fog" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzjZWBg4KUDpiUYtWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA4p0E4Q==
+  </data>
+ </layer>
+</map>

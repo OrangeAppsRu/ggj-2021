@@ -57,6 +57,15 @@ export class GameMap extends cc.Component {
     _tileLayer = null;
 
     /**
+     * @type {cc.TiledObjectGroup}
+     */
+    @property({
+        type: cc.TiledObjectGroup,
+        visible: true,
+    })
+    _objectGroup = null;
+
+    /**
      * @override
      * @public
      */
@@ -225,6 +234,12 @@ export class GameMap extends cc.Component {
         });
 
         this.highlightTiles(tiles);
+    }
+
+    getObject() {
+        this._objectGroup.getObjects().find((obj) => {
+            cc.log(obj);
+        });
     }
 }
 
