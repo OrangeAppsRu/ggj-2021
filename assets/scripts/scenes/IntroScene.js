@@ -8,7 +8,7 @@ export default class IntroScene extends BaseScene {
 	onLoad () {
 		super.onLoad();
 
-		this.dialogueText = Locale.getString('mainDialogue');
+		this.dialogueText = Locale.getString('introDialogue');
 		this.playedText = 0;
 
 		this.processDialogue();
