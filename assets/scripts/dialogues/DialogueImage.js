@@ -5,7 +5,7 @@ export class DialogueImage extends cc.Component {
     @property(cc.Prefab)
     dialoguePrefab = null;
 
-    onLoad(s) {
+    onLoad() {
         this.createImage();
     }
 
