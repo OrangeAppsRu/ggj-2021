@@ -68,16 +68,14 @@ export class GameMap extends cc.Component {
      * @private
      */
     _onTouchEnd(event) {
-        const tile = this._getTileByPosition(event.touch.getLocation());
+        const tile = this.getTileAt(event.touch.getLocation());
 
         if (tile) {
-            this.selectTileAt(tile);
-
-            this.node.emit('select', tile);
+            this.node.emit('select', tile, this.getPositionAt(tile));
         }
     }
 
-    _getTileByPosition(position) {
+    getTileAt(position) {
         position = this._selectionLayer.node.convertToNodeSpaceAR(position);
 
         const layerSize = this._selectionLayer.getLayerSize();
@@ -115,7 +113,7 @@ export class GameMap extends cc.Component {
         }
     }
 
-    _clearSelection() {
+    clearSelection() {
         for (const tile of this._selectedTiles) {
             this._setSelection(tile, 0);
         }
@@ -130,12 +128,12 @@ export class GameMap extends cc.Component {
      * @public
      */
     selectTileAt(tile) {
-        this._clearSelection();
+        this.clearSelection();
         this._setSelection(tile, this._selectionGID);
     }
 
     highlightTiles(center, radius) {
-        this._clearSelection();
+        this.clearSelection();
 
         for (let x = center.x - radius; x <= center.x + radius; x++) {
             for (let y = center.y - radius; y <= center.y + radius; y++) {
@@ -150,7 +148,11 @@ export class GameMap extends cc.Component {
         this._entityLayer.addUserNode(entity);
     }
 
-    getEntityPositionAt({x, y}) {
+    /**
+     * @param {cc.Vec2} position
+     * @returns {cc.Vec2}
+     */
+    getPositionAt({x, y}) {
         const p = this._entityLayer.getPositionAt(x, y);
         const mapSize = this._tiledMap.getMapSize();
         const tileSize = this._tiledMap.getTileSize();
