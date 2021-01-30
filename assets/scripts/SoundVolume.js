@@ -11,7 +11,7 @@ export default class SoundVolume extends cc.Component {
 	knob = null;
 
 	onLoad() {
-		this.knob.on('touchmove', this.onTouchMoved, this);
+		this.knob.on('touchmove', this._onTouchMoved, this);
 	}
 
 	_onTouchMoved(event) {
