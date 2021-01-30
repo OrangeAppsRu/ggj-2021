@@ -43,16 +43,27 @@ export default class MainScene extends BaseScene {
 
             this._currentEntity = this._hero;
 
-            const tile = this._gameMap.getTileAt(this._hero.getGlobalPosition());
+            const center = this._gameMap.getTileAt(this._hero.getGlobalPosition());
+            const tiles = this._gameMap.getTiles(center, (tile, properties) => {
+                if (properties && properties.move) {
+                    return true;
+                }
 
-            this._gameMap.highlightTiles(tile, 2);
+                return false;
+            });
+
+            this._gameMap.highlightTiles(tiles);
         });
 
-        this._gameMap.node.on('select', (tile, position) => {
-            this._hero.node.runAction(cc.sequence([
-                cc.callFunc(() => this._gameMap.clearSelection()),
-                cc.moveTo(0.5, position),
-            ]));
+        this._gameMap.node.on(GameMap.EVENT_INPUT_TILE, () => {
+            this._gameMap.clearSelection();
+        });
+
+        this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, (tile, position) => {
+            if (this._currentEntity) {
+                this._currentEntity.node.runAction(cc.moveTo(0.5, position));
+                this._currentEntity = null;
+            }
         });
     }
 }

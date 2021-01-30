@@ -1,5 +1,12 @@
 const {ccclass, property} = cc._decorator;
 
+const DIRECTIONS = [
+    [0,1],
+    [0,-1],
+    [1,0],
+    [-1,0],
+];
+
 @ccclass
 export class GameMap extends cc.Component {
     /**
@@ -41,6 +48,15 @@ export class GameMap extends cc.Component {
     _entityLayer = null;
 
     /**
+     * @type {cc.TiledLayer}
+     */
+    @property({
+        type: cc.TiledLayer,
+        visible: true,
+    })
+    _tileLayer = null;
+
+    /**
      * @override
      * @public
      */
@@ -71,7 +87,14 @@ export class GameMap extends cc.Component {
         const tile = this.getTileAt(event.touch.getLocation());
 
         if (tile) {
-            this.node.emit('select', tile, this.getPositionAt(tile));
+            const tilePosition = this.getPositionAt(tile);
+            const selectedTile = this._selectedTiles.find((selectedTile) => selectedTile.x === tile.x && selectedTile.y === tile.y);
+
+            this.node.emit(GameMap.EVENT_INPUT_TILE, tile, tilePosition);
+
+            if (selectedTile) {
+                this.node.emit(GameMap.EVENT_SELECT_TILE, tile, tilePosition);
+            }
         }
     }
 
@@ -132,15 +155,11 @@ export class GameMap extends cc.Component {
         this._setSelection(tile, this._selectionGID);
     }
 
-    highlightTiles(center, radius) {
+    highlightTiles(tiles) {
         this.clearSelection();
-
-        for (let x = center.x - radius; x <= center.x + radius; x++) {
-            for (let y = center.y - radius; y <= center.y + radius; y++) {
-                if (this._isContains({x, y})) {
-                    this._setSelection({x, y}, this._hightlightGID);
-                }
-            }
+        
+        for (const tile of tiles) {
+            this._setSelection(tile, this._hightlightGID);
         }
     }
 
@@ -162,4 +181,35 @@ export class GameMap extends cc.Component {
 
         return p;
     }
+
+    getPropertiesForGID(gid) {
+        return this._tiledMap.getPropertiesForGID(gid);
+    }
+
+    getTiles(center, filter) {
+        const tiles = [];
+
+        for (const dir of DIRECTIONS) {
+            const x = center.x + dir[0];
+            const y = center.y + dir[1];
+
+            if (this._isContains({x, y})) {
+                const tile = this._tileLayer.getTiledTileAt(x, y, true);
+
+                if (filter) {
+                    if (filter(tile, this._tiledMap.getPropertiesForGID(tile.gid))) {
+                        tiles.push(tile);
+                    }
+
+                } else {
+                    tiles.push(tile);
+                }
+            }
+        }
+
+        return tiles;
+    }
 }
+
+GameMap.EVENT_SELECT_TILE = 'selectTile';
+GameMap.EVENT_INPUT_TILE = 'inputTile';

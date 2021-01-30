@@ -8,6 +8,9 @@
   <image width="173" height="87" source="3.png"/>
  </tile>
  <tile id="2">
+  <properties>
+   <property name="move" type="bool" value="true"/>
+  </properties>
   <image width="173" height="87" source="4.png"/>
  </tile>
  <tile id="3">
