@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        430.41462568086604,
         0,
         0,
         0,
@@ -458,7 +458,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 133.4,
+      "width": 0,
       "height": 21
     },
     "_anchorPoint": {
@@ -601,7 +601,7 @@
       "__id__": 10
     },
     "_N$mode": 0,
-    "_N$progress": 0.2,
+    "_N$progress": 0,
     "_N$reverse": false,
     "_id": "762Tgo7PBA37Ao84eaJ2dq"
   },

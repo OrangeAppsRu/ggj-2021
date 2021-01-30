@@ -1,20 +1,42 @@
 import BaseScene from './BaseScene';
 const {ccclass, property} = cc._decorator;
+const loadableScenes = ['Intro', 'Main', 'Menu'];
 
 @ccclass
 export default class LoadScene extends BaseScene {
 	@property(cc.ProgressBar)
 	progressBar = null;
 
-
 	onLoad() {
 		super.onLoad();
-		this.preloadGameScenes();
+		this._preloadGameScenes()
+			.then(() => {
+				cc.director.loadScene('Menu');
+			})
 	}
 
-	preloadGameScenes() {
-		cc.director.preloadScene('Intro', () => {cc.log('Scene two preloaded')});
-		cc.director.preloadScene('Main',() => {cc.log('Scene three preloaded')});
-		cc.director.loadScene('Menu');
+	/**
+	 * @returns {Promise<Array>}
+	 * @private
+	 */
+	_preloadGameScenes() {
+		return Promise.all(loadableScenes.map(scene => {
+			return new Promise(resolve => {
+				cc.director.preloadScene(
+					scene,
+					(completed, total) => {
+						this._updateProgressBar(1 / loadableScenes.length / total);
+					},
+					resolve)
+			});
+		}));
+	}
+
+	/**
+	 * @param {Number}addedProgress
+	 * @private
+	 */
+	_updateProgressBar(addedProgress) {
+		this.progressBar.progress += addedProgress;
 	}
 }
