@@ -62,6 +62,7 @@ export default class MainScene extends BaseScene {
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, (tile, position) => {
             if (this._currentEntity) {
                 this._currentEntity.node.runAction(cc.moveTo(0.5, position));
+                this._currentEntity.getComponent(cc.Animation).play('DudeFront');
                 this._currentEntity = null;
             }
         });
