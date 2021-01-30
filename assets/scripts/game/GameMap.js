@@ -31,16 +31,22 @@ export class GameMap extends cc.Component {
 
     _selectedTiles = [];
 
+    @property({
+        type: cc.TiledObjectGroup,
+        visible: true,
+    })
+    _objectGroup = null;
+
     /**
      * @override
      * @public
      */
     onLoad() {
         this._initInput();
-        this._initMap();
+        this._initSelection();
     }
 
-    _initMap() {
+    _initSelection() {
         const size = this._selectionLayer.getLayerSize();
 
         for (let i = 0; i < size.width; i++) {
