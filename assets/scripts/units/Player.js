@@ -23,6 +23,14 @@ export class Player{
         this._oxygen = amount;
     }
 
+    get inventory() {
+        return this._inventory;
+    }
+
+    set inventory(items) {
+        this._inventory = items
+    }
+
     isPossibleMove(cost) {
         return this.oxygen.get() - cost > 0;
     }
