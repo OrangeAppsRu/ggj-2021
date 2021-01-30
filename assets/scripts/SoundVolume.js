@@ -11,15 +11,10 @@ export default class SoundVolume extends cc.Component {
 	knob = null;
 
 	onLoad() {
-		this.knob.on('touchstart', this.onTouchStart, this);
 		this.knob.on('touchmove', this.onTouchMoved, this);
 	}
 
-	onTouchStart() {
-
-	}
-
-	onTouchMoved(event) {
+	_onTouchMoved(event) {
 		let newVal = this.knob.x + event.getDeltaX();
 		let barWidth = this.progressBar.node.width;
 
