@@ -31,12 +31,22 @@ export default class MainScene extends BaseScene {
      * @private
      */
     _currentEntity = null;
+
+    _centerGameMap() {
+        const position = this._hero.getGlobalPosition();
+        const frameSize = cc.view.getFrameSize();
+        const direction = cc.v2(frameSize.width / 2  - position.x, frameSize.height / 2 - position.y);
+
+        if (direction.len() > 150) {
+            this._gameMap.node.runAction(cc.moveBy(0.5, direction));
+        }
+    }
     
     onLoad() {
         super.onLoad();
 
         this._gameMap.addEntity(this._hero.node);
-        this._hero.node.setPosition(this._gameMap.getPositionAt({x: 3, y: 3}));
+        this._hero.node.setPosition(this._gameMap.getPositionAt({x: 13, y: 13}));
 
         this._hero.node.on(cc.Node.EventType.TOUCH_END, (event) => {
             event.stopPropagation();
@@ -44,26 +54,22 @@ export default class MainScene extends BaseScene {
             this._currentEntity = this._hero;
 
             const center = this._gameMap.getTileAt(this._hero.getGlobalPosition());
-            const tiles = this._gameMap.getTiles(center, (tile, properties) => {
-                if (properties && properties.move) {
-                    return true;
-                }
-
-                return false;
-            });
-
-            this._gameMap.highlightTiles(tiles);
+            
+            this._gameMap.highlightMove(center);
         });
 
         this._gameMap.node.on(GameMap.EVENT_INPUT_TILE, () => {
             this._gameMap.clearSelection();
+            this._currentEntity = null;
         });
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, (tile, position) => {
             if (this._currentEntity) {
-                this._currentEntity.node.runAction(cc.moveTo(0.5, position));
-                this._currentEntity.getComponent(cc.Animation).play('DudeFront');
-                this._currentEntity = null;
+                this._currentEntity.node.runAction(cc.sequence([
+                    cc.moveTo(0.5, position),
+                    cc.callFunc(() => this._gameMap.highlightMove(tile)),
+                    cc.callFunc(() => this._centerGameMap()),
+                ]));
             }
         });
     }

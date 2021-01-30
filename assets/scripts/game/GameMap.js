@@ -32,9 +32,9 @@ export class GameMap extends cc.Component {
      * @type {number}
      * @private
      */
-    _selectionGID = 2;
+    _selectionGID = 3;
 
-    _hightlightGID = 1;
+    _hightlightGID = 2;
 
     _selectedTiles = [];
 
@@ -89,12 +89,9 @@ export class GameMap extends cc.Component {
         if (tile) {
             const tilePosition = this.getPositionAt(tile);
             const selectedTile = this._selectedTiles.find((selectedTile) => selectedTile.x === tile.x && selectedTile.y === tile.y);
+            const event = selectedTile ? GameMap.EVENT_SELECT_TILE : GameMap.EVENT_INPUT_TILE;
 
-            this.node.emit(GameMap.EVENT_INPUT_TILE, tile, tilePosition);
-
-            if (selectedTile) {
-                this.node.emit(GameMap.EVENT_SELECT_TILE, tile, tilePosition);
-            }
+            this.node.emit(event, tile, tilePosition);
         }
     }
 
@@ -126,7 +123,7 @@ export class GameMap extends cc.Component {
         return x >= 0 && x < size.width && y >= 0 && y < size.height;
     }
 
-    _setSelection(tile, gid = 0) {
+    _setSelection(tile, gid) {
         if (this._isContains(tile)) {
             if (gid !== 0) {
                 this._selectedTiles.push(tile);
@@ -188,8 +185,16 @@ export class GameMap extends cc.Component {
 
     getTiles(center, filter) {
         const tiles = [];
+        const dirs = [];
+        const distance = 3;
 
-        for (const dir of DIRECTIONS) {
+        for (let i = 1; i <= distance; i++) {
+            for (const dir of DIRECTIONS) {
+                dirs.push([dir[0] * i, dir[1] * i]);
+            }
+        }
+
+        for (const dir of dirs) {
             const x = center.x + dir[0];
             const y = center.y + dir[1];
 
@@ -208,6 +213,18 @@ export class GameMap extends cc.Component {
         }
 
         return tiles;
+    }
+
+    highlightMove(tile) {
+        const tiles = this.getTiles(tile, (tile, properties) => {
+            if (properties && !properties.isBlock) {
+                return true;
+            }
+
+            return false;
+        });
+
+        this.highlightTiles(tiles);
     }
 }
 
