@@ -15,14 +15,24 @@ export class Hero extends cc.Component {
     playMoveAnimation(direction) {
         const {x, y} = {x: direction.x, y: direction.y};
 
-        if (x === 1 && y === 0) {
+        if (x === 1) {
             this.node.setScale(1);
+            this.getComponent(cc.Animation).play('DudeFront');
         }
 
-        if (x === 0 && y === 1) {
+        if (y === 1) {
             this.node.setScale(-1, 1);
+            this.getComponent(cc.Animation).play('DudeFront');
         }
 
-        this.getComponent(cc.Animation).play('DudeFront');
+        if (y === -1) {
+            this.node.setScale(-1, 1);
+            this.getComponent(cc.Animation).play('DudeBack');
+        }
+
+        if (x === -1) {
+            this.node.setScale(1);
+            this.getComponent(cc.Animation).play('DudeBack');
+        }
     }
 }
