@@ -90,10 +90,10 @@
     "_active": true,
     "_components": [
       {
-        "__id__": 38
+        "__id__": 36
       },
       {
-        "__id__": 39
+        "__id__": 37
       }
     ],
     "_prefab": null,
@@ -183,7 +183,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        430.41462568086604,
         0,
         0,
         0,
@@ -1123,13 +1123,16 @@
     "_active": true,
     "_components": [
       {
+        "__id__": 32
+      },
+      {
+        "__id__": 33
+      },
+      {
+        "__id__": 34
+      },
+      {
         "__id__": 35
-      },
-      {
-        "__id__": 36
-      },
-      {
-        "__id__": 37
       }
     ],
     "_prefab": null,
@@ -1190,18 +1193,15 @@
     "_children": [
       {
         "__id__": 27
-      },
-      {
-        "__id__": 30
       }
     ],
     "_active": true,
     "_components": [
       {
-        "__id__": 33
+        "__id__": 30
       },
       {
-        "__id__": 34
+        "__id__": 31
       }
     ],
     "_prefab": null,
@@ -1254,7 +1254,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "barBeginning",
+    "_name": "dot",
     "_objFlags": 0,
     "_parent": {
       "__id__": 26
@@ -1267,130 +1267,6 @@
       },
       {
         "__id__": 29
-      }
-    ],
-    "_prefab": null,
-    "_opacity": 255,
-    "_color": {
-      "__type__": "cc.Color",
-      "r": 255,
-      "g": 255,
-      "b": 255,
-      "a": 255
-    },
-    "_contentSize": {
-      "__type__": "cc.Size",
-      "width": 117,
-      "height": 117
-    },
-    "_anchorPoint": {
-      "__type__": "cc.Vec2",
-      "x": 0.5,
-      "y": 0.5
-    },
-    "_trs": {
-      "__type__": "TypedArray",
-      "ctor": "Float64Array",
-      "array": [
-        -3.5,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        1,
-        1,
-        1
-      ]
-    },
-    "_eulerAngles": {
-      "__type__": "cc.Vec3",
-      "x": 0,
-      "y": 0,
-      "z": 0
-    },
-    "_skewX": 0,
-    "_skewY": 0,
-    "_is3DNode": false,
-    "_groupIndex": 0,
-    "groupIndex": 0,
-    "_id": "32y4QjoQZKLI9XA367aggT"
-  },
-  {
-    "__type__": "cc.Widget",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 27
-    },
-    "_enabled": true,
-    "alignMode": 1,
-    "_target": null,
-    "_alignFlags": 8,
-    "_left": -62,
-    "_right": 620.238,
-    "_top": 0,
-    "_bottom": 0,
-    "_verticalCenter": 0,
-    "_horizontalCenter": 0,
-    "_isAbsLeft": true,
-    "_isAbsRight": true,
-    "_isAbsTop": true,
-    "_isAbsBottom": true,
-    "_isAbsHorizontalCenter": true,
-    "_isAbsVerticalCenter": true,
-    "_originalWidth": 0,
-    "_originalHeight": 0,
-    "_id": "094k1QhldI+Z8jFwcFax6z"
-  },
-  {
-    "__type__": "cc.Sprite",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 27
-    },
-    "_enabled": true,
-    "_materials": [
-      {
-        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
-      }
-    ],
-    "_srcBlendFactor": 770,
-    "_dstBlendFactor": 771,
-    "_spriteFrame": {
-      "__uuid__": "822b38d1-003c-42c0-b8da-c57a9ee472df"
-    },
-    "_type": 0,
-    "_sizeMode": 1,
-    "_fillType": 0,
-    "_fillCenter": {
-      "__type__": "cc.Vec2",
-      "x": 0,
-      "y": 0
-    },
-    "_fillStart": 0,
-    "_fillRange": 0,
-    "_isTrimmedMode": true,
-    "_atlas": null,
-    "_id": "ebD+JibuFHO5CHVbJ7bGSO"
-  },
-  {
-    "__type__": "cc.Node",
-    "_name": "dot",
-    "_objFlags": 0,
-    "_parent": {
-      "__id__": 26
-    },
-    "_children": [],
-    "_active": true,
-    "_components": [
-      {
-        "__id__": 31
-      },
-      {
-        "__id__": 32
       }
     ],
     "_prefab": null,
@@ -1446,7 +1322,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 30
+      "__id__": 27
     },
     "_enabled": true,
     "alignMode": 1,
@@ -1475,7 +1351,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 30
+      "__id__": 27
     },
     "_enabled": true,
     "_materials": [
@@ -1605,7 +1481,7 @@
     "_enabled": true,
     "_N$totalLength": 667,
     "_N$barSprite": {
-      "__id__": 33
+      "__id__": 30
     },
     "_N$mode": 0,
     "_N$progress": 1,
@@ -1640,6 +1516,22 @@
     "_originalWidth": 0,
     "_originalHeight": 0,
     "_id": "5dTbpseqxB+rZHVUFh2Qxs"
+  },
+  {
+    "__type__": "0bfff7M+eFIxYwxDZpmywXd",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 25
+    },
+    "_enabled": true,
+    "progressBar": {
+      "__id__": 33
+    },
+    "knob": {
+      "__id__": 27
+    },
+    "_id": "fePsim+fBDzpkzsQ3ArQWu"
   },
   {
     "__type__": "cc.Canvas",

@@ -13,9 +13,8 @@ export default class LoadScene extends BaseScene {
 	}
 
 	preloadGameScenes() {
-		cc.director.preloadScene('Menu', () => {cc.log('Scene one preloaded')});
 		cc.director.preloadScene('Intro', () => {cc.log('Scene two preloaded')});
 		cc.director.preloadScene('Main',() => {cc.log('Scene three preloaded')});
+		cc.director.loadScene('Menu');
 	}
-
 }
