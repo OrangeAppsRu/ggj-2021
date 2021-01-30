@@ -49,6 +49,9 @@ export default class IntroScene extends BaseScene {
 				}
 				typableTextComponent.processDialogue(textToShow);
 				this.playedText++;
+
+			} else {
+				cc.director.loadScene('Main');
 			}
 		}
 	}
