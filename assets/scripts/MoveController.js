@@ -18,17 +18,24 @@ export class GameController {
         return isPassable && this._player.oxygen.get() - price.oxygen > 0 && this._player.energy.get() - price.energy > 0;
     }
 
-
+    /**
+     * @param  {number} tileType
+     * @returns {boolean}
+     */
     makeMove(tileType) {
         if (this.isPossibleMove(tileType)) {
-            this.updatePlayer(tileType);
+            this._updatePlayer(tileType);
             return true;
         }
 
         return false;
     }
 
-    updatePlayer(tileType) {
+    /**
+     * @param  {number} tileType
+     * @private
+     */
+    _updatePlayer(tileType) {
         const oldOxygen = this._player.oxygen.get();
         const oldEnergy = this._player.energy.get();
         const price = this._calculator.calcMovePrice(tileType);
