@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="isometric" renderorder="right-down" compressionlevel="-1" width="10" height="10" tilewidth="173" tileheight="87" infinite="0" nextlayerid="5" nextobjectid="2">
+<map version="1.2" tiledversion="1.3.1" orientation="isometric" renderorder="right-down" compressionlevel="0" width="10" height="10" tilewidth="173" tileheight="87" infinite="0" nextlayerid="6" nextobjectid="2">
  <tileset firstgid="1" source="1.tsx"/>
  <layer id="1" name="tiles" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjZmBgYB4CmAUHm1g9lKhFlyPFXFIxAPIQATM=
+   eAFjZmBgYB5imIVI91JLHcgcGKZ1WAEA8ZwBMw==
   </data>
  </layer>
  <layer id="2" name="selection" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgwkAAAGQAAE=
+   eAFjYBgFgykEAAGQAAE=
   </data>
  </layer>
- <objectgroup id="4" name="objects"/>
- <layer id="3" name="shadow" width="10" height="10">
+ <layer id="5" name="entities" width="10" height="10">
   <data encoding="base64" compression="zlib">
-   eJxjZWBgYCUB4wLEqEFXO1zUERsuxGAAn2AAyQ==
+   eAFjZWBgYCUSA5XhBTBz8CoCSo5UdTB/46MBj5gAtQ==
+  </data>
+ </layer>
+ <layer id="3" name="shadow" width="10" height="10" visible="0">
+  <data encoding="base64" compression="zlib">
+   eAFjZWBgYCUBA5ViBchmYFWAJAhTiySElTlU1IHciQvA/EAsDQCfYADJ
   </data>
  </layer>
 </map>

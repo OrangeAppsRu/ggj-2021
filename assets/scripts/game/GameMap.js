@@ -31,11 +31,14 @@ export class GameMap extends cc.Component {
 
     _selectedTiles = [];
 
+    /**
+     * @type {cc.TiledLayer}
+     */
     @property({
-        type: cc.TiledObjectGroup,
+        type: cc.TiledLayer,
         visible: true,
     })
-    _objectGroup = null;
+    _entityLayer = null;
 
     /**
      * @override
@@ -68,8 +71,9 @@ export class GameMap extends cc.Component {
         const tile = this._getTileByPosition(event.touch.getLocation());
 
         if (tile) {
-            // this.selectTileAt(tile);
-            this.highlightTiles(tile, 2);
+            this.selectTileAt(tile);
+
+            this.node.emit('select', tile);
         }
     }
 
@@ -140,5 +144,20 @@ export class GameMap extends cc.Component {
                 }
             }
         }
+    }
+
+    addEntity(entity) {
+        this._entityLayer.addUserNode(entity);
+    }
+
+    getEntityPositionAt({x, y}) {
+        const p = this._entityLayer.getPositionAt(x, y);
+        const mapSize = this._tiledMap.getMapSize();
+        const tileSize = this._tiledMap.getTileSize();
+
+        p.x -= (mapSize.width / 2 - 1) * tileSize.width + tileSize.width / 2;
+        p.y -= (mapSize.height / 2 - 1) * tileSize.height;
+
+        return p;
     }
 }
