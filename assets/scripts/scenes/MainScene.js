@@ -27,6 +27,13 @@ export default class MainScene extends BaseScene {
     _hero = null;
 
     /**
+     * @type {cc.Prefab}
+     * @private
+     */
+    @property(cc.Prefab)
+    window = null;
+
+    /**
      * @type {cc.Component}
      * @private
      */
