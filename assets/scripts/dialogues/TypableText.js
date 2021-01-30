@@ -29,7 +29,9 @@ export class TypableText extends cc.Component {
 	}
 
 	setCharacterName (name) {
-		this.characterName.string = name + ': ';
+		if (this.characterName) {
+			this.characterName.string = name + ': ';
+		}
 	}
 
 	get isTextTyping () {
