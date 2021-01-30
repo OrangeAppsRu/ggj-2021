@@ -2,20 +2,20 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export class DialogueImage extends cc.Component {
-    @property(cc.Prefab)
-    dialoguePrefab = null;
+	@property(cc.Node)
+	spriteNode = null;
 
-    onLoad() {
-        this.createImage();
-    }
+	@property(cc.SpriteFrame)
+	character1 = null;
 
-    createImage() {
-        const image = cc.instantiate(this.dialoguePrefab);
-        const imageNode = this.node.getChildByName('image');
+	@property(cc.SpriteFrame)
+	character2 = null;
 
-        imageNode.addChild(image);
+	setSpriteFrame (character) {
+		const spriteComponent = this.spriteNode.getComponent(cc.Sprite);
 
-        image.setPosition(0, 0);
-        image.setContentSize(imageNode.width, imageNode.height);
-    }
+		if (spriteComponent) {
+			spriteComponent.spriteFrame = this['character' + character];
+		}
+	}
 }

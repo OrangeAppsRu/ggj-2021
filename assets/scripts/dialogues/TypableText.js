@@ -7,12 +7,13 @@ export class TypableText extends cc.Component {
 	@property(cc.Label)
 	label = null;
 
-	onLoad () {
-		this.dialogueText = Locale.getString('introDialogue');
-		this.playedText = 0;
-		this.textIsTyping = false;
+	@property(cc.Label)
+	characterName = null;
 
-		this.processDialogue();
+	processDialogue (text) {
+		this.isTextTyping = true;
+		this.setCharacterName(Locale.getString('characters')[text.character]);
+		this.setText(text.text);
 	}
 
 	setText (text) {
@@ -21,25 +22,21 @@ export class TypableText extends cc.Component {
 				this.label.string = text.substr(0, i);
 
 				if (i === text.length) {
-					this.textIsTyping = false;
-					this.playedText++;
+					this.isTextTyping = false;
 				}
-			}, i / 15);
+			}, i / 30);
 		}
 	}
 
-	processDialogue () {
-		if (!this.textIsTyping) {
-			this.playText();
-		}
+	setCharacterName (name) {
+		this.characterName.string = name + ': ';
 	}
 
-	playText () {
-		const textToPlay = this.dialogueText[this.playedText];
+	get isTextTyping () {
+		return this.textIsTyping;
+	}
 
-		if (textToPlay) {
-			this.textIsTyping = true;
-			this.setText(this.dialogueText[this.playedText]);
-		}
+	set isTextTyping (value) {
+		this.textIsTyping = value;
 	}
 }
