@@ -11,4 +11,8 @@ export class Hero extends cc.Component {
     getGlobalPosition() {
         return this.node.parent.convertToWorldSpaceAR(this.node.position.add(this._anchor.position));
     }
+
+    playMoveAnimation() {
+        this.getComponent(cc.Animation).play('DudeFront');
+    }
 }

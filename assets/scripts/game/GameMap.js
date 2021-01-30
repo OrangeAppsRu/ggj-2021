@@ -237,9 +237,7 @@ export class GameMap extends cc.Component {
     }
 
     getObject() {
-        this._objectGroup.getObjects().find((obj) => {
-            cc.log(obj);
-        });
+        
     }
 }
 
