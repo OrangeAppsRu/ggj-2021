@@ -7,6 +7,9 @@ export class TypableText extends cc.Component {
 	@property(cc.Label)
 	label = null;
 
+	@property(cc.Label)
+	characterName = null;
+
 	onLoad () {
 		this.dialogueText = Locale.getString('introDialogue');
 		this.playedText = 0;
@@ -16,15 +19,19 @@ export class TypableText extends cc.Component {
 	}
 
 	setText (text) {
-		for (let i = 0; i <= text.length; ++i) {
-			this.scheduleOnce(() => {
-				this.label.string = text.substr(0, i);
+		this.characterName.string = text.character + ': ';
 
-				if (i === text.length) {
+		const characterText = text.text;
+
+		for (let i = 0; i <= characterText.length; ++i) {
+			this.scheduleOnce(() => {
+				this.label.string = characterText.substr(0, i);
+
+				if (i === characterText.length) {
 					this.textIsTyping = false;
 					this.playedText++;
 				}
-			}, i / 15);
+			}, i / 30);
 		}
 	}
 

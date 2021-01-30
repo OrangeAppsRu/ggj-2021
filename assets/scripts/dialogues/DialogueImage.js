@@ -11,7 +11,7 @@ export class DialogueImage extends cc.Component {
 
     createImage() {
         const image = cc.instantiate(this.dialoguePrefab);
-        const imageNode = this.node.getChildByName('image');
+        const imageNode = this.node.getChildByName('characters').getChildByName('image');
 
         imageNode.addChild(image);
 
