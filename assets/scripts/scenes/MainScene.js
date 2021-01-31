@@ -1,6 +1,7 @@
 import {GameMap} from '../game/GameMap';
 import {Hero} from '../game/Hero';
 import BaseScene from './BaseScene';
+import {Dialogue} from "../dialogues/Dialogue";
 
 const {ccclass, property} = cc._decorator;
 
@@ -51,6 +52,13 @@ export default class MainScene extends BaseScene {
     
     onLoad() {
         super.onLoad();
+
+        this._dialogue = new Dialogue(this.node.getChildByName('mainUI').getChildByName('dialogue'));
+
+        if(cc.sys.localStorage.getItem('newGame')) {
+            cc.sys.localStorage.removeItem('newGame');
+            this._dialogue.runTalk('mainDialogue');
+        }
 
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 13, y: 13}));
