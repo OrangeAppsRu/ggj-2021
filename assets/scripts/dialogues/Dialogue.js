@@ -8,9 +8,11 @@ export class Dialogue {
         this._renderNode = renderNode;
         this._char = renderNode.getComponent('DialogueImage');
         this._text = renderNode.getComponent('TypableText');
+        this._textContainer = renderNode.getChildByName('textContainer');
     }
 
     runTalk(key) {
+        this._textContainer.active = true;
         this._dialogue = Locale.getString(key);
         this._playedText = 0;
 
@@ -31,6 +33,7 @@ export class Dialogue {
                 ++this._playedText;
             } else {
                 this._renderNode.off(cc.Node.EventType.TOUCH_START, this._processDialogue, this);
+                this._textContainer.active = false;
             }
         }
     }
