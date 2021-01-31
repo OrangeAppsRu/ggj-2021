@@ -16,6 +16,8 @@ export class Dialogue {
     }
 
     runTalk(key) {
+        this._text.isTextTyping = false;
+
         if (this._textContainer) {
             this._textContainer.active = true;
         }

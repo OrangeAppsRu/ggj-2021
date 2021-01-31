@@ -97,6 +97,11 @@ export default class MainScene extends BaseScene {
             this._ui.setOxygen(event.oxygen);
         }.bind(this));
 
+
+        cc.game.on('newItem', item => {
+          this._dialogue.runTalk('' + item)
+        });
+
         this._gameMap.addEntity(this._base);
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 50, y: 50}));
