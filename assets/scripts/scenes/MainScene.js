@@ -60,8 +60,6 @@ export default class MainScene extends BaseScene {
             this._dialogue.runTalk('mainDialogue');
         }
 
-        this._dialogue.runTalk('mainDialogue');
-
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 13, y: 13}));
 
