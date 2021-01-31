@@ -1,7 +1,11 @@
-import {GameMap} from '../game/GameMap';
-import {Hero} from '../game/Hero';
-import BaseScene from './BaseScene';
+import {GameMap} from "../game/GameMap";
+import {Hero} from "../game/Hero";
+import BaseScene from "./BaseScene";
 import {Dialogue} from "../dialogues/Dialogue";
+import {Player} from "../units/Player";
+import {TileInfo} from "../TileInfo";
+import {MoveController} from "../MoveController";
+import {TilePrices} from "../../TilesConfig";
 import {Locale} from '../Locale';
 import {Events} from '../../EventsConfig';
 
@@ -42,6 +46,12 @@ export default class MainScene extends BaseScene {
      */
     _currentEntity = null;
 
+    /**
+     * @type {Player} player
+     * @private
+     */
+    _player = null;
+
     _centerGameMap() {
         const position = this._hero.getGlobalPosition();
         const frameSize = cc.view.getFrameSize();
@@ -51,9 +61,13 @@ export default class MainScene extends BaseScene {
             this._gameMap.node.runAction(cc.moveBy(0.5, direction));
         }
     }
-
+    
     onLoad() {
         super.onLoad();
+
+        this._ui = this.getComponent('UI');
+        this._player = new Player();
+        this._moveController = new MoveController(this._player, new TileInfo(TilePrices));
 
         this._dialogue = new Dialogue(this.node.getChildByName('mainUI').getChildByName('dialogue'));
 
@@ -61,6 +75,9 @@ export default class MainScene extends BaseScene {
             cc.sys.localStorage.removeItem('newGame');
             this._dialogue.runTalk('mainDialogue');
         }
+
+        this._ui.setEnergy(this._player.energy);
+        this._ui.setOxygen(this._player.oxygen);
 
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 50, y: 50}));
@@ -84,7 +101,7 @@ export default class MainScene extends BaseScene {
         this._currentEntity = this._hero;
 
         const tile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
-
+        
         this._gameMap.highlightMove(tile);
     }
 
@@ -93,15 +110,21 @@ export default class MainScene extends BaseScene {
             const currentTile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
             const direction = cc.v2(tile.x, tile.y).sub(cc.v2(currentTile.x, currentTile.y)).normalize();
             const toTile = this._gameMap.getTileAt({x: currentTile.x + direction.x, y: currentTile.y + direction.y});
+            const tileType = 101;
 
-            if (this._gameMap.canMove(toTile)) {
+            if (this._gameMap.canMove(toTile) && this._moveController.isPossibleMove(tileType)) {
                 position = this._gameMap.getPositionAt(toTile);
+                this._moveController.makeMove(tileType);
 
                 this._currentEntity.node.runAction(cc.sequence([
                     cc.spawn([
                         cc.moveTo(0.5, position),
                         cc.callFunc(() => this._hero.playMoveAnimation(direction)),
                     ]),
+                    cc.callFunc(() => {
+                       this._ui.setEnergy(this._player.energy);
+                       this._ui.setOxygen(this._player.oxygen);
+                    }),
                     cc.callFunc(() => this._gameMap.highlightMove(toTile)),
                     cc.callFunc(() => this._centerGameMap()),
                 ]));
