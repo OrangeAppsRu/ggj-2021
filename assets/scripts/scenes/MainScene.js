@@ -176,6 +176,9 @@ export default class MainScene extends BaseScene {
             }
 
             cc.audioEngine.playEffect(this.deathSound, false);
+
+        } else if (this._player.inventory.length >= 9) {
+            cc.director.loadScene('Final');
         }
     }
 
