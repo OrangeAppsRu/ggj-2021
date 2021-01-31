@@ -7,6 +7,7 @@ export const Events = {
     event4: 40000,
     event5: 50000,
     event6: 50001,
+    event7: 50002,
     oxygen1: 60000,
     oxygen2: 70000,
     oxygen3: 80000,
