@@ -257,9 +257,9 @@
     "_opacity": 255,
     "_color": {
       "__type__": "cc.Color",
-      "r": 27,
-      "g": 38,
-      "b": 46,
+      "r": 255,
+      "g": 255,
+      "b": 255,
       "a": 255
     },
     "_contentSize": {
@@ -345,7 +345,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "410fb916-8721-4663-bab8-34397391ace7"
+      "__uuid__": "e9f90091-0178-4404-9463-c3437e694411"
     },
     "_type": 1,
     "_sizeMode": 0,
@@ -1201,6 +1201,18 @@
     "_enabled": true,
     "window": {
       "__uuid__": "a97cd619-ddcb-4f36-a714-80c91892075c"
+    },
+    "background": {
+      "__id__": 5
+    },
+    "backgroundImage1": {
+      "__uuid__": "e9f90091-0178-4404-9463-c3437e694411"
+    },
+    "backgroundImage2": {
+      "__uuid__": "338be321-0380-4215-b85f-aa94395906a8"
+    },
+    "backgroundImage3": {
+      "__uuid__": "2b85f88a-10ca-4310-b7d1-4a5e28ddaf4e"
     },
     "_id": "48xOqlRx5CVYA10q9fzFEr"
   }
