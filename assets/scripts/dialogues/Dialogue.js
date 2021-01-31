@@ -9,6 +9,10 @@ export class Dialogue {
         this._char = renderNode.getComponent('DialogueImage');
         this._text = renderNode.getComponent('TypableText');
         this._textContainer = renderNode.getChildByName('textContainer');
+
+        if (this._textContainer) {
+            this._textContainer.active = false;
+        }
     }
 
     runTalk(key) {
