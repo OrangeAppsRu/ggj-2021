@@ -188,7 +188,7 @@
       "array": [
         0,
         0,
-        485.8402515230701,
+        430.41462568086604,
         0,
         0,
         0,
@@ -4175,6 +4175,18 @@
     },
     "window": {
       "__uuid__": "a97cd619-ddcb-4f36-a714-80c91892075c"
+    },
+    "mainMusic": {
+      "__uuid__": "58b158a0-c449-4b8c-a0e2-98208f12edcf"
+    },
+    "deathSound": {
+      "__uuid__": "31596140-db0b-4294-a6ce-bd6eae72eec7"
+    },
+    "pickupItemSound": {
+      "__uuid__": "5202ae8f-2e14-4896-bf23-2cc00c268e52"
+    },
+    "eventSound": {
+      "__uuid__": "e6e9e733-97d8-4c0d-a1f2-8795aff71120"
     },
     "_base": {
       "__id__": 20

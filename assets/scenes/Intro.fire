@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        430.41462568086604,
         0,
         0,
         0,
@@ -1210,6 +1210,9 @@
     },
     "backgroundImage3": {
       "__uuid__": "2b85f88a-10ca-4310-b7d1-4a5e28ddaf4e"
+    },
+    "slideSound": {
+      "__uuid__": "87a8bdb5-ffe5-4297-9b25-bf52066ce790"
     },
     "_id": "48xOqlRx5CVYA10q9fzFEr"
   }

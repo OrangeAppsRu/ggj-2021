@@ -40,6 +40,18 @@ export default class MainScene extends BaseScene {
     @property(cc.Prefab)
     window = null;
 
+    @property(cc.AudioClip)
+    mainMusic = null;
+
+    @property(cc.AudioClip)
+    deathSound = null;
+
+    @property(cc.AudioClip)
+    pickupItemSound = null;
+
+    @property(cc.AudioClip)
+    eventSound = null;
+
     /**
      * @type {cc.Component}
      * @private
@@ -56,7 +68,7 @@ export default class MainScene extends BaseScene {
         type: cc.Node,
         visible: true,
     })
-    _base = null
+    _base = null;
 
     _centerGameMap() {
         const position = this._hero.getGlobalPosition();
@@ -93,6 +105,8 @@ export default class MainScene extends BaseScene {
         this._hero.node.on(cc.Node.EventType.TOUCH_END, this._onSelectHero, this);
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
+
+        cc.audioEngine.playMusic(this.mainMusic, true);
     }
 
     _clearSelection() {
@@ -151,10 +165,17 @@ export default class MainScene extends BaseScene {
     }
 
     _checkGameOver() {
-        if (this._player.oxygen === 0) {
-            // TODO: Нет кислорода
-        } else if (this._player.energy === 0) {
-            // TODO: Нет энергии
+        if (this._player.oxygen === 0 || this._player.energy === 0) {
+
+            if (this._player.oxygen === 0) {
+                // TODO: Нет кислорода
+            }
+
+            if (this._player.energy === 0) {
+                // TODO: Нет энергии
+            }
+
+            cc.audioEngine.playEffect(this.deathSound, false);
         }
     }
 
@@ -169,6 +190,8 @@ export default class MainScene extends BaseScene {
             window.getComponent('BaseWindow').setSpriteFrame(text.imageKey);
             window.getComponent('BaseWindow').playDialogue([text]);
             window.getComponent('BaseWindow').player = player;
+
+            cc.audioEngine.playEffect(this.eventSound, false);
         }
     }
 
@@ -184,6 +207,7 @@ export default class MainScene extends BaseScene {
                 this._ui.setOxygen(this._player.oxygen);
 
                 this._gameMap.removeTile(tile);
+                cc.audioEngine.playEffect(this.pickupItemSound, false);
             }
 
             if (properties.event) {

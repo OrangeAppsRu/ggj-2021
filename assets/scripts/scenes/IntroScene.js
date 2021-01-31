@@ -1,5 +1,6 @@
 import BaseScene from './BaseScene';
 import {Locale} from '../Locale';
+import {Config} from "../../config";
 
 const {ccclass, property} = cc._decorator;
 
@@ -17,8 +18,13 @@ export default class IntroScene extends BaseScene {
 	@property(cc.SpriteFrame)
 	backgroundImage3 = null;
 
+	@property(cc.AudioClip)
+	slideSound = null;
+
 	onLoad () {
 		super.onLoad();
+		cc.audioEngine.stopAll();
+		cc.audioEngine.playMusic(this.slideSound, true);
 
 		this.dialogueText = Locale.getString('introDialogue');
 		this.playedText = 0;
@@ -26,6 +32,10 @@ export default class IntroScene extends BaseScene {
 		this.processDialogue();
 
 		this.node.on(cc.Node.EventType.TOUCH_START, this.processDialogue, this);
+	}
+
+	onDisable() {
+		cc.audioEngine.stopAll();
 	}
 
 	processDialogue () {
