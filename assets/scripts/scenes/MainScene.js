@@ -117,7 +117,7 @@ export default class MainScene extends BaseScene {
             let tileId = 101;
 
             const properties = this._gameMap.getPropertiesForGID(toTile.gid);
-            if (properties) {
+            if (properties && properties.id) {
                 tileId = properties.id;
             }
 
@@ -138,8 +138,17 @@ export default class MainScene extends BaseScene {
                     cc.callFunc(() => this._gameMap.highlightMove(toTile)),
                     cc.callFunc(() => this._centerGameMap()),
                     cc.callFunc(() => this._processTile(tile)),
+                    cc.callFunc(() => this._checkGameOver()),
                 ]));
             }
+        }
+    }
+
+    _checkGameOver() {
+        if (this._player.oxygen === 0) {
+            // TODO: Нет кислорода
+        } else if (this._player.energy === 0) {
+            // TODO: Нет энергии
         }
     }
 
@@ -161,11 +170,10 @@ export default class MainScene extends BaseScene {
         const properties = this._gameMap.getPropertiesForGID(gid);
 
         if (properties) {
-            // TODO: Обработка свойств и тайлов
-            // this._gameMap.removeTile(tile);
-
             if (properties.id) {
-                cc.log('id:', properties.id);
+                this._player.applyItem(properties.id);
+                
+                this._gameMap.removeTile(tile);
             }
         }
     }
