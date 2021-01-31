@@ -15,9 +15,9 @@ export class Player{
     }
 
     set energy(amount) {
-        this._energy = amount < 0 ? 0 : amount;
+        this._energy = Math.min(amount, Config.maxEnergy);
 
-        cc.game.emit('updatePlayer', this);
+        cc.game.emit('updatePlayer', this);cc.game.emit('updatePlayer', this);
     }
 
     get oxygen() {
@@ -25,7 +25,7 @@ export class Player{
     }
 
     set oxygen(amount) {
-        this._oxygen = amount < 0 ? 0 : amount;
+        this._oxygen = Math.min(amount, Config.maxOxygen);
 
         cc.game.emit('updatePlayer', this);
     }
