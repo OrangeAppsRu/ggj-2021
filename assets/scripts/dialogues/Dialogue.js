@@ -12,8 +12,11 @@ export class Dialogue {
     }
 
     runTalk(key) {
-        this._textContainer.active = true;
-        this._dialogue = Locale.getString(key);
+        if (this._textContainer) {
+            this._textContainer.active = true;
+        }
+
+        this._dialogue = typeof key === 'string' ? Locale.getString(key) : key;
         this._playedText = 0;
 
         if (this._dialogue) {
@@ -28,12 +31,18 @@ export class Dialogue {
             const textToShow = this._dialogue[this._playedText];
 
             if (textToShow) {
-                this._char.setSpriteFrame(textToShow.character);
+                if (this._char) {
+                    this._char.setSpriteFrame(textToShow.character);
+                }
+
                 this._text.processDialogue(textToShow);
                 ++this._playedText;
             } else {
                 this._renderNode.off(cc.Node.EventType.TOUCH_START, this._processDialogue, this);
-                this._textContainer.active = false;
+
+                if (this._textContainer) {
+                    this._textContainer.active = false;
+                }
             }
         }
     }
