@@ -2,6 +2,8 @@ import {GameMap} from '../game/GameMap';
 import {Hero} from '../game/Hero';
 import BaseScene from './BaseScene';
 import {Dialogue} from "../dialogues/Dialogue";
+import {Locale} from '../Locale';
+import {Events} from '../../EventsConfig';
 
 const {ccclass, property} = cc._decorator;
 
@@ -49,7 +51,7 @@ export default class MainScene extends BaseScene {
             this._gameMap.node.runAction(cc.moveBy(0.5, direction));
         }
     }
-    
+
     onLoad() {
         super.onLoad();
 
@@ -66,6 +68,9 @@ export default class MainScene extends BaseScene {
         this._hero.node.on(cc.Node.EventType.TOUCH_END, this._selectHero, this);
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
+
+        // TODO: Открывааем окно по событию
+		// this._openWindow(Events.event6);
     }
 
     _clearSelection() {
@@ -79,7 +84,7 @@ export default class MainScene extends BaseScene {
         this._currentEntity = this._hero;
 
         const tile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
-        
+
         this._gameMap.highlightMove(tile);
     }
 
@@ -101,6 +106,19 @@ export default class MainScene extends BaseScene {
                     cc.callFunc(() => this._centerGameMap()),
                 ]));
             }
+        }
+    }
+
+    _openWindow (event) {
+        if (this.window) {
+            const window = cc.instantiate(this.window);
+
+            this.node.addChild(window);
+
+            const text = Locale.getString('events')[event];
+
+            window.getComponent('BaseWindow').setSpriteFrame(text.imageKey);
+            window.getComponent('BaseWindow').playDialogue([text]);
         }
     }
 }

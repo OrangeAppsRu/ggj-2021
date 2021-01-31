@@ -5,9 +5,6 @@ const {ccclass, property} = cc._decorator;
 
 @ccclass
 export default class IntroScene extends BaseScene {
-	@property(cc.Prefab)
-	window = null;
-
 	@property(cc.Node)
 	background = null
 
@@ -29,17 +26,6 @@ export default class IntroScene extends BaseScene {
 		this.processDialogue();
 
 		this.node.on(cc.Node.EventType.TOUCH_START, this.processDialogue, this);
-
-		// this.openWindow();
-	}
-
-	openWindow () {
-		if (this.window) {
-			const window = cc.instantiate(this.window);
-
-			this.node.addChild(window);
-			this.renderText(window.getChildByName('description'));
-		}
 	}
 
 	processDialogue () {
