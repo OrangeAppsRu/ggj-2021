@@ -31,6 +31,5 @@ export default class SoundVolume extends cc.Component {
 
 		Config.sound = newVal / barWidth;
 		cc.sys.localStorage.setItem('volume', Config.sound);
-
 	}
 }
