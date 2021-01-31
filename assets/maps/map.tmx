@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.1" orientation="isometric" renderorder="right-down" compressionlevel="-1" width="25" height="25" tilewidth="173" tileheight="87" infinite="0" nextlayerid="6" nextobjectid="2">
+<map version="1.2" tiledversion="1.3.1" orientation="isometric" renderorder="right-down" compressionlevel="-1" width="100" height="100" tilewidth="173" tileheight="87" infinite="0" nextlayerid="5" nextobjectid="1">
  <tileset firstgid="1" source="tileset.tsx"/>
- <layer id="1" name="tiles" width="25" height="25">
+ <layer id="1" name="bg" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJxjY2BgYBvFo3gUj+JRPIqHAeaB4oF2B7X9NNBuGMWDEwMA4ZUOuQ==
+   eJztw8EJAAAMA6F7ZP+ZC51DwVVTVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/Aag9nEE=
   </data>
  </layer>
- <layer id="2" name="selection" width="25" height="25">
+ <layer id="4" name="selection" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzjZWBg4KUDpiUYtWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA4p0E4Q==
+   eJzt0UENAAAMhLAJOP96Z6MPmqCA3d2KKoZ+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WFZcD0hlEpE=
   </data>
  </layer>
- <objectgroup id="5" name="objects">
-  <object id="1" gid="11" x="1539.27" y="1618.73" width="208" height="142"/>
- </objectgroup>
- <layer id="3" name="entities" width="25" height="25">
+ <layer id="2" name="tiles" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzjZWBg4KUDpiUYtWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA4p0E4Q==
+   eJzt0UENAAAMhLAJOP96Z6MPmqCA3d2KKoZ+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WPph6YelH5Z+WFZcD0hlEpE=
   </data>
  </layer>
- <layer id="4" name="fog" width="25" height="25">
+ <layer id="3" name="fog" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzjZWBg4KUDpiUYtWPUjlE7Ru0YtWPUjlE7Ru0YbHbQGgMA4p0E4Q==
+   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
   </data>
  </layer>
 </map>

@@ -32,9 +32,9 @@ export class GameMap extends cc.Component {
      * @type {number}
      * @private
      */
-    _selectionGID = 3;
+    _selectionGID = 2;
 
-    _hightlightGID = 2;
+    _hightlightGID = 3;
 
     _selectedTiles = [];
 
@@ -45,25 +45,7 @@ export class GameMap extends cc.Component {
         type: cc.TiledLayer,
         visible: true,
     })
-    _entityLayer = null;
-
-    /**
-     * @type {cc.TiledLayer}
-     */
-    @property({
-        type: cc.TiledLayer,
-        visible: true,
-    })
     _tileLayer = null;
-
-    /**
-     * @type {cc.TiledObjectGroup}
-     */
-    @property({
-        type: cc.TiledObjectGroup,
-        visible: true,
-    })
-    _objectGroup = null;
 
     /**
      * @override
@@ -93,7 +75,7 @@ export class GameMap extends cc.Component {
      * @private
      */
     _onTouchEnd(event) {
-        const tile = this.getTileAt(event.touch.getLocation());
+        const tile = this.getTileBy(event.touch.getLocation());
 
         if (tile) {
             const tilePosition = this.getPositionAt(tile);
@@ -104,7 +86,11 @@ export class GameMap extends cc.Component {
         }
     }
 
-    getTileAt(position) {
+    getTileAt({x, y}) {
+        return this._tileLayer.getTiledTileAt(x, y, true);
+    }
+
+    getTileBy(position) {
         position = this._selectionLayer.node.convertToNodeSpaceAR(position);
 
         const layerSize = this._selectionLayer.getLayerSize();
@@ -120,7 +106,7 @@ export class GameMap extends cc.Component {
         const y = Math.floor(layerSize.height - py / mapTileSize.height - px / mapTileSize.width + layerSize.width / 2) - layerSize.height;
 
         if (x >= 0 && x < layerSize.width && y >= 0 && y < layerSize.height) {
-            return {x, y};
+            return this._tileLayer.getTiledTileAt(x, y, true);
         }
 
         return null;
@@ -170,7 +156,7 @@ export class GameMap extends cc.Component {
     }
 
     addEntity(entity) {
-        this._entityLayer.addUserNode(entity);
+        this._tileLayer.addUserNode(entity);
     }
 
     /**
@@ -178,7 +164,7 @@ export class GameMap extends cc.Component {
      * @returns {cc.Vec2}
      */
     getPositionAt({x, y}) {
-        const p = this._entityLayer.getPositionAt(x, y);
+        const p = this._tileLayer.getPositionAt(x, y);
         const mapSize = this._tiledMap.getMapSize();
         const tileSize = this._tiledMap.getTileSize();
 
@@ -195,7 +181,7 @@ export class GameMap extends cc.Component {
     getTiles(center, filter) {
         const tiles = [];
         const dirs = [];
-        const distance = 3;
+        const distance = 1;
 
         for (let i = 1; i <= distance; i++) {
             for (const dir of DIRECTIONS) {
@@ -226,18 +212,25 @@ export class GameMap extends cc.Component {
 
     highlightMove(tile) {
         const tiles = this.getTiles(tile, (tile, properties) => {
-            if (properties && !properties.isBlock) {
-                return true;
+            if (properties && properties.isBlock) {
+                return false;
             }
 
-            return false;
+            return true;
         });
 
         this.highlightTiles(tiles);
     }
 
-    getObject() {
-        
+    canMove({x, y}) {
+        const tile = this._tileLayer.getTiledTileAt(x, y, true);
+        const properties = this._tiledMap.getPropertiesForGID(tile.gid);
+
+        if (properties && properties.isBlock) {
+            return false;
+        }
+
+        return true;
     }
 }
 

@@ -61,11 +61,10 @@ export default class MainScene extends BaseScene {
         }
 
         this._gameMap.addEntity(this._hero.node);
-        this._hero.node.setPosition(this._gameMap.getPositionAt({x: 13, y: 13}));
+        this._hero.node.setPosition(this._gameMap.getPositionAt({x: 50, y: 50}));
 
         this._hero.node.on(cc.Node.EventType.TOUCH_END, this._selectHero, this);
 
-        this._gameMap.node.on(GameMap.EVENT_INPUT_TILE, this._clearSelection, this);
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
     }
 
@@ -79,29 +78,29 @@ export default class MainScene extends BaseScene {
 
         this._currentEntity = this._hero;
 
-        const tile = this._gameMap.getTileAt(this._hero.getGlobalPosition());
+        const tile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
         
         this._gameMap.highlightMove(tile);
     }
 
     _moveEntity(tile, position) {
         if (this._currentEntity) {
-            const currentTile = this._gameMap.getTileAt(this._hero.getGlobalPosition());
+            const currentTile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
             const direction = cc.v2(tile.x, tile.y).sub(cc.v2(currentTile.x, currentTile.y)).normalize();
-            const toTile = {x: currentTile.x + direction.x, y: currentTile.y + direction.y};
-            
-            position = this._gameMap.getPositionAt(toTile);
+            const toTile = this._gameMap.getTileAt({x: currentTile.x + direction.x, y: currentTile.y + direction.y});
 
-            this._currentEntity.node.runAction(cc.sequence([
-                cc.spawn([
-                    cc.moveTo(0.5, position),
-                    cc.callFunc(() => this._hero.playMoveAnimation(direction)),
-                ]),
-                cc.callFunc(() => this._gameMap.highlightMove(toTile)),
-                cc.callFunc(() => this._centerGameMap()),
-            ]));
+            if (this._gameMap.canMove(toTile)) {
+                position = this._gameMap.getPositionAt(toTile);
 
-            this._gameMap.getObject();
+                this._currentEntity.node.runAction(cc.sequence([
+                    cc.spawn([
+                        cc.moveTo(0.5, position),
+                        cc.callFunc(() => this._hero.playMoveAnimation(direction)),
+                    ]),
+                    cc.callFunc(() => this._gameMap.highlightMove(toTile)),
+                    cc.callFunc(() => this._centerGameMap()),
+                ]));
+            }
         }
     }
 }
