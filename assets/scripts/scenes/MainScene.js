@@ -56,6 +56,12 @@ export default class MainScene extends BaseScene {
      */
     _player = null;
 
+    @property({
+        type: cc.Node,
+        visible: true,
+    })
+    _base = null
+
     _centerGameMap() {
         const position = this._hero.getGlobalPosition();
         const frameSize = cc.view.getVisibleSize();
@@ -81,6 +87,7 @@ export default class MainScene extends BaseScene {
         this._ui.setEnergy(this._player.energy);
         this._ui.setOxygen(this._player.oxygen);
 
+        this._gameMap.addEntity(this._base);
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 50, y: 50}));
         this._selectHero();
@@ -90,9 +97,6 @@ export default class MainScene extends BaseScene {
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
 
         cc.audioEngine.playMusic(this.mainMusic, true);
-
-        // TODO: Открывааем окно по событию
-        // this._openWindow(Events.event6);
     }
 
     _clearSelection() {
@@ -178,8 +182,15 @@ export default class MainScene extends BaseScene {
         if (properties) {
             if (properties.id) {
                 this._player.applyItem(properties.id);
-                
+
+                this._ui.setEnergy(this._player.energy);
+                this._ui.setOxygen(this._player.oxygen);
+
                 this._gameMap.removeTile(tile);
+            }
+
+            if (properties.event) {
+                this._openWindow(properties.event);
             }
         }
     }

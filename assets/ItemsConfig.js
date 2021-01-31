@@ -9,17 +9,23 @@ export const Items = {
     navigation: 6000,
     scanner: 7000,
     remoteControl: 8000,
+    marshmello: 90000,
 };
 
 
 export const ItemsPrices = [
     {
         id: Items.scrapMetal,
+        event: 100000,
         points: 100
     },
     {
         id: Items.energyFirst,
         maxEnergy: 1
+    },
+    {
+        id: Items.marshmello,
+        maxOxygen: 15
     },
     {
         id: Items.energySecond,

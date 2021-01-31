@@ -11,6 +11,11 @@ export class TileInfo {
      */
     calcMovePrice(tileType) {
         let tile = this.tileprices.find(info => info.type === tileType);
-        return {oxygen: tile.oxygen || 0, energy: tile.energy || 0};
+
+        if (tile) {
+            return {oxygen: tile.oxygen || 0, energy: tile.energy || 0};
+        }
+        
+        return {oxygen: 0, energy: 0};
     }
 }

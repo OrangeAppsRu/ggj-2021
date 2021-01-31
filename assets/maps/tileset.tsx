@@ -148,6 +148,9 @@
   <image width="173" height="87" source="36.png"/>
  </tile>
  <tile id="34">
+  <properties>
+   <property name="id" type="int" value="90000"/>
+  </properties>
   <image width="173" height="87" source="35.png"/>
  </tile>
  <tile id="35">
