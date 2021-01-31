@@ -54,7 +54,7 @@ export default class MainScene extends BaseScene {
 
     _centerGameMap() {
         const position = this._hero.getGlobalPosition();
-        const frameSize = cc.view.getFrameSize();
+        const frameSize = cc.view.getVisibleSize();
         const direction = cc.v2(frameSize.width / 2  - position.x, frameSize.height / 2 - position.y);
 
         if (direction.len() > 150) {
