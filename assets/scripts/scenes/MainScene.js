@@ -91,9 +91,6 @@ export default class MainScene extends BaseScene {
         this._hero.node.on(cc.Node.EventType.TOUCH_END, this._onSelectHero, this);
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
-
-        // TODO: Открывааем окно по событию
-        // this._openWindow(Events.event6);
     }
 
     _clearSelection() {
@@ -182,8 +179,12 @@ export default class MainScene extends BaseScene {
 
                 this._ui.setEnergy(this._player.energy);
                 this._ui.setOxygen(this._player.oxygen);
-                
+
                 this._gameMap.removeTile(tile);
+            }
+
+            if (properties.event) {
+                this._openWindow(properties.event);
             }
         }
     }

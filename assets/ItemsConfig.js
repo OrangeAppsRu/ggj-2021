@@ -16,6 +16,7 @@ export const Items = {
 export const ItemsPrices = [
     {
         id: Items.scrapMetal,
+        event: 100000,
         points: 100
     },
     {
