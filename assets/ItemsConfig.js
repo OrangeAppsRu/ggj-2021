@@ -10,6 +10,7 @@ export const Items = {
     scanner: 7000,
     remoteControl: 8000,
     marshmello: 90000,
+    bannana: 100000,
 };
 
 
@@ -29,6 +30,10 @@ export const ItemsPrices = [
     },
     {
         id: Items.energySecond,
+        maxEnergy: 1
+    },
+    {
+        id: Items.bannana,
         maxEnergy: 1
     },
     {

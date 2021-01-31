@@ -38,5 +38,13 @@ export class MoveController {
 
         this._player.oxygen -= price.oxygen;
         this._player.energy -= price.energy;
+
+        if (price.oxygenSupply) {
+            this._player.oxygen += price.oxygenSupply;
+        }
+
+        if (price.energySupply) {
+            this._player.energySupply += price.energySupply;
+        }
     }
 }
