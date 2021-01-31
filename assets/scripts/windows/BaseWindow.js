@@ -16,6 +16,7 @@ export class BaseWindow extends cc.Component {
 		const buttonsNode = this.node.getChildByName('buttons');
 		buttonsNode.getChildByName('continueButton').on(cc.Node.EventType.TOUCH_START, this._processContinueButtonClick, this);
 		buttonsNode.getChildByName('playButton').on(cc.Node.EventType.TOUCH_START, this._processPlayButtonClick, this);
+		buttonsNode.getChildByName('restart').on(cc.Node.EventType.TOUCH_START, this._processRestartClick, this);
 	}
 
 	_processContinueButtonClick () {
@@ -26,6 +27,10 @@ export class BaseWindow extends cc.Component {
 	_processPlayButtonClick () {
 		this.node.removeFromParent(true);
 		this._player.energy -= 1;
+	}
+
+	_processRestartClick () {
+		cc.director.loadScene('Menu');
 	}
 
 	setSpriteFrame (spriteFrame) {

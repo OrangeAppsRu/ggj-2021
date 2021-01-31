@@ -165,7 +165,7 @@ export default class MainScene extends BaseScene {
     }
 
     _checkGameOver() {
-        if (this._player.oxygen === 0 || this._player.energy === 0) {
+        if (this._player.oxygen === 0) {
 
             if (this._player.oxygen === 0) {
                 // TODO: Нет кислорода
@@ -174,6 +174,8 @@ export default class MainScene extends BaseScene {
             if (this._player.energy === 0) {
                 // TODO: Нет энергии
             }
+
+            this._openWindow(Events.event7, this._player);
 
             cc.audioEngine.playEffect(this.deathSound, false);
 
@@ -189,10 +191,22 @@ export default class MainScene extends BaseScene {
             this.node.addChild(window);
 
             const text = Locale.getString('events')[event];
+            const baseWindow = window.getComponent('BaseWindow');
 
-            window.getComponent('BaseWindow').setSpriteFrame(text.imageKey);
-            window.getComponent('BaseWindow').playDialogue([text]);
-            window.getComponent('BaseWindow').player = player;
+            baseWindow.setSpriteFrame(text.imageKey);
+            baseWindow.playDialogue([text]);
+            baseWindow.player = player;
+
+            if (event === Events.event7) {
+                const buttons = baseWindow.node.getChildByName('buttons');
+                const continueButton = buttons.getChildByName('continueButton');
+                const playButton = buttons.getChildByName('playButton');
+                const restartButton = buttons.getChildByName('restart');
+
+                continueButton.active = false;
+                playButton.active = false;
+                restartButton.active = true;
+            }
 
             cc.audioEngine.playEffect(this.eventSound, false);
         }
