@@ -10,3 +10,39 @@ export const Items = {
     scanner: 7000,
     remoteControl: 8000,
 };
+
+
+export const ItemsPrices = [
+    {
+        id: Items.scrapMetal,
+        points: 100
+    },
+    {
+        id: Items.energyFirst,
+        maxEnergy: 1
+    },
+    {
+        id: Items.energySecond,
+        maxEnergy: 1
+    },
+    {
+        id: Items.oxygenFirst,
+        maxOxygen: 20
+    },
+    {
+        id: Items.oxygenSecond,
+        maxOxygen: 20
+    },
+    {
+        id: Items.navigation,
+        item: 'navigation'
+    },
+    {
+        id: Items.scanner,
+        item: 'scanner'
+    },
+    {
+        id: Items.remoteControl,
+        item: 'remoteControl'
+    }
+];
