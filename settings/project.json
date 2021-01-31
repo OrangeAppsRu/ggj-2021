@@ -14,6 +14,7 @@
   "group-list": [
     "default"
   ],
+  "start-scene": "dd007877-44bd-4058-bef7-b22d5653d9a1",
   "design-resolution-width": 960,
   "design-resolution-height": 640,
   "fit-width": true,
@@ -37,6 +38,5 @@
     "live": {
       "enable": false
     }
-  },
-  "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49"
+  }
 }

@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        430.41462568086604,
         0,
         0,
         0,
@@ -1192,7 +1192,7 @@
     "_id": "29zXboiXFBKoIV4PQ2liTe"
   },
   {
-    "__type__": "acec86Am6pEo7CYGdL6xP8a",
+    "__type__": "46134KHHrJNCowcUmprVZbC",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -1210,6 +1210,6 @@
     "slideSound": {
       "__uuid__": "87a8bdb5-ffe5-4297-9b25-bf52066ce790"
     },
-    "_id": "48xOqlRx5CVYA10q9fzFEr"
+    "_id": "acwI8iYt9LgaOYtju9qFs5"
   }
 ]
