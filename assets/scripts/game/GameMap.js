@@ -36,6 +36,8 @@ export class GameMap extends cc.Component {
 
     _hightlightGID = 3;
 
+    _emptyGID = 37;
+
     _selectedTiles = [];
 
     /**
@@ -46,6 +48,15 @@ export class GameMap extends cc.Component {
         visible: true,
     })
     _tileLayer = null;
+
+    /**
+     * @type {cc.TiledLayer}
+     */
+    @property({
+        type: cc.TiledLayer,
+        visible: true,
+    })
+    _bg = null;
 
     /**
      * @override
@@ -231,6 +242,10 @@ export class GameMap extends cc.Component {
         }
 
         return true;
+    }
+
+    removeTile(tile) {
+        this._tileLayer.setTileGIDAt(this._emptyGID, tile.x, tile.y);
     }
 }
 

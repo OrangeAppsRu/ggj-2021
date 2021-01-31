@@ -13,7 +13,7 @@ export class MoveController {
      */
     isPossibleMove(tileType) {
         let price = this._calculator.calcMovePrice(tileType);
-        return this._player.oxygen - price.oxygen > 0 && this._player.energy - price.energy > 0;
+        return this._player.oxygen - price.oxygen >= 0 && this._player.energy - price.energy >= 0;
     }
 
     /**

@@ -1,4 +1,5 @@
 import {Config} from "../../config";
+import {ItemsPrices} from '../../ItemsConfig';
 
 /**
  * @Class
@@ -39,5 +40,27 @@ export class Player{
 
     hasItem(item) {
         return this._inventory.indexOf(item) !== -1;
+    }
+
+    applyItem(id) {
+        const data = ItemsPrices.find(obj => obj.id === id);
+
+        if (data) {
+            if (data.points) {
+
+            }
+
+            if (data.maxEnergy) {
+                this.energy += data.maxEnergy;
+            }
+
+            if (data.maxOxygen) {
+                this.oxygen += data.maxOxygen;
+            }
+
+            if (data.item) {
+                this.addInventory(data.item);
+            }
+        }
     }
 }
