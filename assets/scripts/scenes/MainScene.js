@@ -115,10 +115,11 @@ export default class MainScene extends BaseScene {
             if (this._gameMap.canMove(toTile) && this._moveController.isPossibleMove(tileType)) {
                 position = this._gameMap.getPositionAt(toTile);
                 this._moveController.makeMove(tileType);
-
+                
+                const duration = 0.2;
                 this._currentEntity.node.runAction(cc.sequence([
                     cc.spawn([
-                        cc.moveTo(0.5, position),
+                        cc.moveTo(duration, position).easing(cc.easeBounceInOut()),
                         cc.callFunc(() => this._hero.playMoveAnimation(direction)),
                     ]),
                     cc.callFunc(() => {
@@ -146,7 +147,7 @@ export default class MainScene extends BaseScene {
             window.getComponent('BaseWindow').playDialogue([text]);
         }
     }
-    
+
     _processTile(tile) {
         const properties = this._gameMap.getPropertiesForGID(tile.gid);
 
