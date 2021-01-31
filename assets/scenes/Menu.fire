@@ -189,7 +189,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        485.8402515230701,
         0,
         0,
         0,
@@ -481,7 +481,7 @@
         "__id__": 11
       }
     ],
-    "_active": true,
+    "_active": false,
     "_components": [
       {
         "__id__": 15
@@ -902,7 +902,7 @@
       "ctor": "Float64Array",
       "array": [
         -3.177,
-        -139.026,
+        -91.118,
         0,
         0,
         0,
@@ -1098,7 +1098,7 @@
     "_right": 0,
     "_top": 0,
     "_bottom": 0,
-    "_verticalCenter": -139.026,
+    "_verticalCenter": -91.118,
     "_horizontalCenter": -3.177,
     "_isAbsLeft": true,
     "_isAbsRight": true,

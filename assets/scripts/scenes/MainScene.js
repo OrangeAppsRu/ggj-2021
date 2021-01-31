@@ -115,6 +115,15 @@ export default class MainScene extends BaseScene {
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
 
         cc.audioEngine.playMusic(this.mainMusic, true);
+
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, (event) => {
+            switch (event.keyCode) {
+                case cc.macro.KEY['e']: {
+                    cc.director.loadScene('Final');
+                    break;
+                }
+            }
+        });
     }
 
     _clearSelection() {
@@ -173,7 +182,6 @@ export default class MainScene extends BaseScene {
     }
 
     _checkGameOver() {
-        this._openWindow(Events.event7, this._player);
         if (this._player.oxygen === 0) {
 
             if (this._player.oxygen === 0) {
