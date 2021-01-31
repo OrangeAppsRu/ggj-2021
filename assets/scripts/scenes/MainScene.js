@@ -3,7 +3,7 @@ import {Hero} from "../game/Hero";
 import BaseScene from "./BaseScene";
 import {Dialogue} from "../dialogues/Dialogue";
 import {Player} from "../units/Player";
-import {TileInfo} from "../TIleInfo";
+import {TileInfo} from "../TileInfo";
 import {MoveController} from "../MoveController";
 import {TilePrices} from "../../TilesConfig";
 import {Locale} from '../Locale';
