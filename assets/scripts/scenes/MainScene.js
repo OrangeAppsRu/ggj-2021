@@ -128,6 +128,8 @@ export default class MainScene extends BaseScene {
                     cc.callFunc(() => this._gameMap.highlightMove(toTile)),
                     cc.callFunc(() => this._centerGameMap()),
                 ]));
+
+                this._processTile(tile);
             }
         }
     }
@@ -142,6 +144,15 @@ export default class MainScene extends BaseScene {
 
             window.getComponent('BaseWindow').setSpriteFrame(text.imageKey);
             window.getComponent('BaseWindow').playDialogue([text]);
+        }
+    }
+    
+    _processTile(tile) {
+        const properties = this._gameMap.getPropertiesForGID(tile.gid);
+
+        if (properties) {
+            // TODO: Обработка свойств и тайлов
+            this._gameMap.removeTile(tile);
         }
     }
 }
