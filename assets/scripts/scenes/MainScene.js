@@ -40,6 +40,10 @@ export default class MainScene extends BaseScene {
     @property(cc.Prefab)
     window = null;
 
+
+    @property(cc.AudioClip)
+    mainMusic = null;
+
     /**
      * @type {cc.Component}
      * @private
@@ -84,6 +88,8 @@ export default class MainScene extends BaseScene {
         this._hero.node.on(cc.Node.EventType.TOUCH_END, this._onSelectHero, this);
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
+
+        cc.audioEngine.playMusic(this.mainMusic, true);
 
         // TODO: Открывааем окно по событию
         // this._openWindow(Events.event6);

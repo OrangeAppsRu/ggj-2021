@@ -188,7 +188,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        430.41462568086604,
         0,
         0,
         0,
@@ -700,6 +700,24 @@
     },
     "_enabled": true,
     "_materials": [
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      },
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      },
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      },
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      },
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      },
+      {
+        "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
+      },
       {
         "__uuid__": "eca5d2f2-8ef6-41c2-bbe6-f9c79d09c432"
       },
@@ -3921,6 +3939,9 @@
     },
     "window": {
       "__uuid__": "a97cd619-ddcb-4f36-a714-80c91892075c"
+    },
+    "mainMusic": {
+      "__uuid__": "58b158a0-c449-4b8c-a0e2-98208f12edcf"
     },
     "_id": "42nTwS87JCEpPrf+X+68ch"
   },
