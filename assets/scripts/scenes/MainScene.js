@@ -92,8 +92,10 @@ export default class MainScene extends BaseScene {
             this._dialogue.runTalk('mainDialogue');
         }
 
-        this._ui.setEnergy(this._player.energy);
-        this._ui.setOxygen(this._player.oxygen);
+        cc.game.on('updatePlayer', function ( event ) {
+            this._ui.setEnergy(event.energy);
+            this._ui.setOxygen(event.oxygen);
+        }.bind(this));
 
         this._gameMap.addEntity(this._base);
         this._gameMap.addEntity(this._hero.node);
@@ -177,7 +179,7 @@ export default class MainScene extends BaseScene {
         }
     }
 
-    _openWindow(event) {
+    _openWindow(event, player) {
         if (this.window) {
             const window = cc.instantiate(this.window);
 
@@ -187,6 +189,7 @@ export default class MainScene extends BaseScene {
 
             window.getComponent('BaseWindow').setSpriteFrame(text.imageKey);
             window.getComponent('BaseWindow').playDialogue([text]);
+            window.getComponent('BaseWindow').player = player;
 
             cc.audioEngine.playEffect(this.eventSound, false);
         }
@@ -208,7 +211,7 @@ export default class MainScene extends BaseScene {
             }
 
             if (properties.event) {
-                this._openWindow(properties.event);
+                this._openWindow(properties.event, this._player);
             }
         }
     }
