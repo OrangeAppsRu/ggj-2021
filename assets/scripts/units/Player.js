@@ -63,6 +63,11 @@ export class Player{
             }
 
             if (data.item) {
+
+                if (!this.hasItem(data.item)) {
+                    cc.game.emit('newItem', id);
+                }
+
                 this.addInventory(data.item);
             }
         }
