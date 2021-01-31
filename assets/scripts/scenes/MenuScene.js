@@ -10,12 +10,11 @@ export default class MenuScene extends BaseScene {
 	}
 
 	startNewGame() {
+		cc.sys.localStorage.setItem('newGame', true);
 		cc.director.loadScene('Intro');
-		cc.log('Intro Launched');
 	}
 
 	resumeGame() {
 		cc.director.loadScene('Main');
-		cc.log('Main Scene Launched');
 	}
 }
