@@ -70,6 +70,9 @@ export default class MainScene extends BaseScene {
     })
     _base = null;
 
+    @property(cc.Prefab)
+    mapWindow = null;
+
     _centerGameMap() {
         const position = this._hero.getGlobalPosition();
         const frameSize = cc.view.getVisibleSize();
@@ -215,6 +218,14 @@ export default class MainScene extends BaseScene {
             }
 
             cc.audioEngine.playEffect(this.eventSound, false);
+        }
+    }
+
+    showMap() {
+        if (this.mapWindow) {
+            const window = cc.instantiate(this.mapWindow);
+
+            this.node.addChild(window);
         }
     }
 
