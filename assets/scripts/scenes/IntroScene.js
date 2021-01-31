@@ -8,6 +8,18 @@ export default class IntroScene extends BaseScene {
 	@property(cc.Prefab)
 	window = null;
 
+	@property(cc.Node)
+	background = null
+
+	@property(cc.SpriteFrame)
+	backgroundImage1 = null;
+
+	@property(cc.SpriteFrame)
+	backgroundImage2 = null;
+
+	@property(cc.SpriteFrame)
+	backgroundImage3 = null;
+
 	onLoad () {
 		super.onLoad();
 
@@ -32,6 +44,7 @@ export default class IntroScene extends BaseScene {
 
 	processDialogue () {
 		this.renderText(this.node.getChildByName('dialogue'));
+		this.updateBackground();
 	}
 
 	renderText (node) {
@@ -53,6 +66,26 @@ export default class IntroScene extends BaseScene {
 			} else {
 				cc.director.loadScene('Main');
 			}
+		}
+	}
+
+	updateBackground () {
+		const spriteComponent = this.background.getComponent(cc.Sprite);
+
+		if (spriteComponent) {
+			let backgroundImageSpriteFrame = 1;
+
+			switch (this.playedText) {
+				case 5:
+				case 6:
+					backgroundImageSpriteFrame = 2;
+					break;
+				case 7:
+					backgroundImageSpriteFrame = 3;
+					break;
+			}
+
+			spriteComponent.spriteFrame = this['backgroundImage' + backgroundImageSpriteFrame];
 		}
 	}
 }
