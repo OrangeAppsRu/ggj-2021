@@ -6,6 +6,8 @@ import {Player} from "../units/Player";
 import {TileInfo} from "../TIleInfo";
 import {MoveController} from "../MoveController";
 import {TilePrices} from "../../TilesConfig";
+import {Locale} from '../Locale';
+import {Events} from '../../EventsConfig';
 
 const {ccclass, property} = cc._decorator;
 
@@ -83,6 +85,9 @@ export default class MainScene extends BaseScene {
         this._hero.node.on(cc.Node.EventType.TOUCH_END, this._selectHero, this);
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
+
+        // TODO: Открывааем окно по событию
+		// this._openWindow(Events.event6);
     }
 
     _clearSelection() {
@@ -124,6 +129,19 @@ export default class MainScene extends BaseScene {
                     cc.callFunc(() => this._centerGameMap()),
                 ]));
             }
+        }
+    }
+
+    _openWindow (event) {
+        if (this.window) {
+            const window = cc.instantiate(this.window);
+
+            this.node.addChild(window);
+
+            const text = Locale.getString('events')[event];
+
+            window.getComponent('BaseWindow').setSpriteFrame(text.imageKey);
+            window.getComponent('BaseWindow').playDialogue([text]);
         }
     }
 }
