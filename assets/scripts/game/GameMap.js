@@ -98,7 +98,11 @@ export class GameMap extends cc.Component {
     }
 
     getTileAt({x, y}) {
-        return this._tileLayer.getTiledTileAt(x, y, true);
+        if (this._tileLayer.getTileGIDAt(x, y) !== 0) {
+            return this._tileLayer.getTiledTileAt(x, y, true);
+        }
+        
+        return this._bg.getTiledTileAt(x, y, true);
     }
 
     getTileBy(position) {

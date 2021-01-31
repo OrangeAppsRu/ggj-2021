@@ -52,6 +52,12 @@ export default class MainScene extends BaseScene {
      */
     _player = null;
 
+    @property({
+        type: cc.Node,
+        visible: true,
+    })
+    _base = null
+
     _centerGameMap() {
         const position = this._hero.getGlobalPosition();
         const frameSize = cc.view.getVisibleSize();
@@ -77,6 +83,7 @@ export default class MainScene extends BaseScene {
         this._ui.setEnergy(this._player.energy);
         this._ui.setOxygen(this._player.oxygen);
 
+        this._gameMap.addEntity(this._base);
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 50, y: 50}));
         this._selectHero();
