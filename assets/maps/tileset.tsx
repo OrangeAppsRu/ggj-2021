@@ -62,6 +62,7 @@
  </tile>
  <tile id="13">
   <properties>
+   <property name="event" type="int" value="20000"/>
    <property name="id" type="int" value="302"/>
   </properties>
   <image width="136" height="122" source="20.png"/>
@@ -73,9 +74,15 @@
   <image width="163" height="149" source="19.png"/>
  </tile>
  <tile id="15">
+  <properties>
+   <property name="event" type="int" value="40000"/>
+  </properties>
   <image width="172" height="122" source="18.png"/>
  </tile>
  <tile id="16">
+  <properties>
+   <property name="event" type="int" value="40000"/>
+  </properties>
   <image width="135" height="110" source="14.png"/>
  </tile>
  <tile id="17">
@@ -85,6 +92,9 @@
   <image width="168" height="111" source="15.png"/>
  </tile>
  <tile id="18">
+  <properties>
+   <property name="event" type="int" value="40000"/>
+  </properties>
   <image width="168" height="111" source="16.png"/>
  </tile>
  <tile id="19">
@@ -94,18 +104,30 @@
   <image width="173" height="117" source="17.png"/>
  </tile>
  <tile id="20">
+  <properties>
+   <property name="event" type="int" value="10000"/>
+  </properties>
   <image width="173" height="87" source="21.png"/>
  </tile>
  <tile id="21">
+  <properties>
+   <property name="event" type="int" value="10000"/>
+  </properties>
   <image width="173" height="87" source="22.png"/>
  </tile>
  <tile id="22">
+  <properties>
+   <property name="event" type="int" value="30000"/>
+  </properties>
   <image width="173" height="87" source="23.png"/>
  </tile>
  <tile id="23">
   <image width="173" height="87" source="24.png"/>
  </tile>
  <tile id="24">
+  <properties>
+   <property name="event" type="int" value="50001"/>
+  </properties>
   <image width="173" height="87" source="25.png"/>
  </tile>
  <tile id="25">
@@ -118,6 +140,9 @@
   <image width="173" height="87" source="28.png"/>
  </tile>
  <tile id="28">
+  <properties>
+   <property name="event" type="int" value="50000"/>
+  </properties>
   <image width="173" height="87" source="29.png"/>
  </tile>
  <tile id="29">

@@ -15,7 +15,7 @@ export class Player{
     }
 
     set energy(amount) {
-        this._energy = amount;
+        this._energy = Math.min(amount, Config.maxEnergy);
     }
 
     get oxygen() {
@@ -23,7 +23,7 @@ export class Player{
     }
 
     set oxygen(amount) {
-        this._oxygen = amount;
+        this._oxygen = Math.min(amount, Config.maxOxygen);
     }
 
     get inventory() {
