@@ -165,6 +165,7 @@ export default class MainScene extends BaseScene {
     }
 
     _checkGameOver() {
+        this._openWindow(Events.event7, this._player);
         if (this._player.oxygen === 0) {
 
             if (this._player.oxygen === 0) {

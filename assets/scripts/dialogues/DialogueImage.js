@@ -11,6 +11,9 @@ export class DialogueImage extends cc.Component {
 	@property(cc.SpriteFrame)
 	character2 = null;
 
+	@property(cc.SpriteFrame)
+	character3 = null;
+
 	setSpriteFrame (character) {
 		const spriteComponent = this.spriteNode.getComponent(cc.Sprite);
 

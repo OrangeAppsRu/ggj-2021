@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.5",
+  "uuid": "ab7b52e3-cec9-4067-992b-dfd549362d91",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 371,
+  "height": 418,
+  "platformSettings": {},
+  "subMetas": {
+    "techPodAvatar": {
+      "ver": "1.0.4",
+      "uuid": "1493f27e-b8a3-4fdc-aef7-4715c04157b9",
+      "rawTextureUuid": "ab7b52e3-cec9-4067-992b-dfd549362d91",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 371,
+      "height": 418,
+      "rawWidth": 371,
+      "rawHeight": 418,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -56,11 +56,12 @@ export default class  FinalScene extends BaseScene {
 				if (dialogueImageComponent) {
 					dialogueImageComponent.setSpriteFrame(textToShow.character);
 				}
+
 				typableTextComponent.processDialogue(textToShow);
 				this.playedText++;
 
 			} else {
-				// cc.director.loadScene('Main');
+				cc.director.loadScene('FinalBest');
 			}
 		}
 	}
