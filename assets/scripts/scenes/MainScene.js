@@ -179,6 +179,9 @@ export default class MainScene extends BaseScene {
         if (properties) {
             if (properties.id) {
                 this._player.applyItem(properties.id);
+
+                this._ui.setEnergy(this._player.energy);
+                this._ui.setOxygen(this._player.oxygen);
                 
                 this._gameMap.removeTile(tile);
             }
