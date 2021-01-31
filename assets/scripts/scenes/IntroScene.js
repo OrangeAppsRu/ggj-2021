@@ -1,5 +1,6 @@
 import BaseScene from './BaseScene';
 import {Locale} from '../Locale';
+import {Config} from "../../config";
 
 const {ccclass, property} = cc._decorator;
 
@@ -16,6 +17,15 @@ export default class IntroScene extends BaseScene {
 
 	@property(cc.SpriteFrame)
 	backgroundImage3 = null;
+
+	// @property(cc.AudioClip)
+	// slideSound1 = null;
+	//
+	// @property(cc.AudioClip)
+	// slideSound2 = null;
+	//
+	// @property(cc.AudioClip)
+	// slideSound3 = null;
 
 	onLoad () {
 		super.onLoad();
@@ -60,18 +70,22 @@ export default class IntroScene extends BaseScene {
 
 		if (spriteComponent) {
 			let backgroundImageSpriteFrame = 1;
+			let slideSound = 1;
 
 			switch (this.playedText) {
 				case 5:
 				case 6:
 					backgroundImageSpriteFrame = 2;
+					slideSound = 1;
 					break;
 				case 7:
 					backgroundImageSpriteFrame = 3;
+					slideSound = 1;
 					break;
 			}
 
 			spriteComponent.spriteFrame = this['backgroundImage' + backgroundImageSpriteFrame];
+			// cc.audioEngine.play(this['slideSound' + slideSound, false, Config.sound]);
 		}
 	}
 }

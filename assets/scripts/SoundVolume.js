@@ -17,6 +17,7 @@ export default class SoundVolume extends cc.Component {
 			this.progressBar.progress = volume;
 		}
 		this.knob.on('touchmove', this._onTouchMoved, this);
+		this.node.on('touchend', this._onTouchEnd, this);
 	}
 
 	_onTouchMoved(event) {
@@ -31,5 +32,9 @@ export default class SoundVolume extends cc.Component {
 
 		Config.sound = newVal / barWidth;
 		cc.sys.localStorage.setItem('volume', Config.sound);
+	}
+
+	_onTouchEnd(event) {
+		cc.log('TOUCH FINISHED')
 	}
 }
