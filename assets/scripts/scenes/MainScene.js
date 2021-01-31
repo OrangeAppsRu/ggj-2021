@@ -62,9 +62,7 @@ export default class MainScene extends BaseScene {
         }
     }
     
-    onLoad() {
-        super.onLoad();
-
+    start() {
         this._ui = this.getComponent('UI');
         this._player = new Player();
         this._moveController = new MoveController(this._player, new TileInfo(TilePrices));
@@ -81,13 +79,14 @@ export default class MainScene extends BaseScene {
 
         this._gameMap.addEntity(this._hero.node);
         this._hero.node.setPosition(this._gameMap.getPositionAt({x: 50, y: 50}));
+        this._selectHero();
 
-        this._hero.node.on(cc.Node.EventType.TOUCH_END, this._selectHero, this);
+        this._hero.node.on(cc.Node.EventType.TOUCH_END, this._onSelectHero, this);
 
         this._gameMap.node.on(GameMap.EVENT_SELECT_TILE, this._moveEntity, this);
 
         // TODO: Открывааем окно по событию
-		// this._openWindow(Events.event6);
+        // this._openWindow(Events.event6);
     }
 
     _clearSelection() {
@@ -95,14 +94,18 @@ export default class MainScene extends BaseScene {
         this._currentEntity = null;
     }
 
-    _selectHero(event) {
-        event.stopPropagation();
-
+    _selectHero() {
         this._currentEntity = this._hero;
 
         const tile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
         
         this._gameMap.highlightMove(tile);
+    }
+
+    _onSelectHero(event) {
+        event.stopPropagation();
+
+        this._selectHero();
     }
 
     _moveEntity(tile, position) {
