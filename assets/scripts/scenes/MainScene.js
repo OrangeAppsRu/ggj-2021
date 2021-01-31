@@ -8,6 +8,7 @@ import {MoveController} from "../MoveController";
 import {TilePrices, Tiles} from "../../TilesConfig";
 import {Locale} from '../Locale';
 import {Events} from '../../EventsConfig';
+import {Config} from "../../config";
 
 const {ccclass, property} = cc._decorator;
 
@@ -94,6 +95,9 @@ export default class MainScene extends BaseScene {
             cc.sys.localStorage.removeItem('newGame');
             this._dialogue.runTalk('mainDialogue');
         }
+
+        this._ui.setEnergy(Config.maxEnergy);
+        this._ui.setOxygen(Config.maxOxygen);
 
         cc.game.on('updatePlayer', function ( event ) {
             this._ui.setEnergy(event.energy);
@@ -183,15 +187,6 @@ export default class MainScene extends BaseScene {
 
     _checkGameOver() {
         if (this._player.oxygen === 0) {
-
-            if (this._player.oxygen === 0) {
-                // TODO: Нет кислорода
-            }
-
-            if (this._player.energy === 0) {
-                // TODO: Нет энергии
-            }
-
             this._openWindow(Events.event7, this._player);
 
             cc.audioEngine.playEffect(this.deathSound, false);

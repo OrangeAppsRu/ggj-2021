@@ -177,7 +177,7 @@
       "array": [
         0,
         0,
-        511.82101363660325,
+        430.41462568086604,
         0,
         0,
         0,
@@ -1129,9 +1129,7 @@
     "character2": {
       "__uuid__": "f8f9fe01-884d-44a7-8571-1c501fd8a1a3"
     },
-    "character3": {
-      "__uuid__": "1493f27e-b8a3-4fdc-aef7-4715c04157b9"
-    },
+    "character3": null,
     "_id": "b7bX7tTDlGS6v5vFn0KU06"
   },
   {
