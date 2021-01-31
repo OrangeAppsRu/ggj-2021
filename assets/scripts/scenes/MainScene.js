@@ -5,7 +5,7 @@ import {Dialogue} from "../dialogues/Dialogue";
 import {Player} from "../units/Player";
 import {TileInfo} from "../TileInfo";
 import {MoveController} from "../MoveController";
-import {TilePrices} from "../../TilesConfig";
+import {TilePrices, Tiles} from "../../TilesConfig";
 import {Locale} from '../Locale';
 import {Events} from '../../EventsConfig';
 
@@ -113,11 +113,17 @@ export default class MainScene extends BaseScene {
             const currentTile = this._gameMap.getTileBy(this._hero.getGlobalPosition());
             const direction = cc.v2(tile.x, tile.y).sub(cc.v2(currentTile.x, currentTile.y)).normalize();
             const toTile = this._gameMap.getTileAt({x: currentTile.x + direction.x, y: currentTile.y + direction.y});
-            const tileType = 101;
+            
+            let tileId = 101;
 
-            if (this._gameMap.canMove(toTile) && this._moveController.isPossibleMove(tileType)) {
+            const properties = this._gameMap.getPropertiesForGID(toTile.gid);
+            if (properties) {
+                tileId = properties.id;
+            }
+
+            if (this._gameMap.canMove(toTile) && this._moveController.isPossibleMove(tileId)) {
                 position = this._gameMap.getPositionAt(toTile);
-                this._moveController.makeMove(tileType);
+                this._moveController.makeMove(tileId);
                 
                 const duration = 0.2;
                 this._currentEntity.node.runAction(cc.sequence([
@@ -131,14 +137,13 @@ export default class MainScene extends BaseScene {
                     }),
                     cc.callFunc(() => this._gameMap.highlightMove(toTile)),
                     cc.callFunc(() => this._centerGameMap()),
+                    cc.callFunc(() => this._processTile(tile)),
                 ]));
-
-                this._processTile(tile);
             }
         }
     }
 
-    _openWindow (event) {
+    _openWindow(event) {
         if (this.window) {
             const window = cc.instantiate(this.window);
 
@@ -152,11 +157,16 @@ export default class MainScene extends BaseScene {
     }
 
     _processTile(tile) {
-        const properties = this._gameMap.getPropertiesForGID(tile.gid);
+        const {gid} = tile;
+        const properties = this._gameMap.getPropertiesForGID(gid);
 
         if (properties) {
             // TODO: Обработка свойств и тайлов
-            this._gameMap.removeTile(tile);
+            // this._gameMap.removeTile(tile);
+
+            if (properties.id) {
+                cc.log('id:', properties.id);
+            }
         }
     }
 }

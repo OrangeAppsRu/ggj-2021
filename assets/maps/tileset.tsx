@@ -2,6 +2,10 @@
 <tileset version="1.2" tiledversion="1.3.1" name="tileset" tilewidth="173" tileheight="149" tilecount="35" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
+  <properties>
+   <property name="id" type="int" value="201"/>
+   <property name="isBlock" type="bool" value="true"/>
+  </properties>
   <image width="173" height="147" source="1.png"/>
  </tile>
  <tile id="1">
@@ -11,21 +15,40 @@
   <image width="173" height="87" source="3.png"/>
  </tile>
  <tile id="3">
+  <properties>
+   <property name="id" type="int" value="101"/>
+  </properties>
   <image width="173" height="87" source="4.png"/>
  </tile>
  <tile id="4">
+  <properties>
+   <property name="id" type="int" value="101"/>
+  </properties>
   <image width="173" height="87" source="5.png"/>
  </tile>
  <tile id="5">
+  <properties>
+   <property name="id" type="int" value="102"/>
+  </properties>
   <image width="173" height="87" source="6.png"/>
  </tile>
  <tile id="6">
+  <properties>
+   <property name="id" type="int" value="104"/>
+  </properties>
   <image width="173" height="87" source="7.png"/>
  </tile>
  <tile id="8">
+  <properties>
+   <property name="id" type="int" value="103"/>
+  </properties>
   <image width="173" height="87" source="9.png"/>
  </tile>
  <tile id="9">
+  <properties>
+   <property name="id" type="int" value="202"/>
+   <property name="isBlock" type="bool" value="true"/>
+  </properties>
   <image width="173" height="87" source="10.png"/>
  </tile>
  <tile id="11">
@@ -35,9 +58,15 @@
   <image width="135" height="111" source="13.png"/>
  </tile>
  <tile id="13">
+  <properties>
+   <property name="id" type="int" value="302"/>
+  </properties>
   <image width="136" height="122" source="20.png"/>
  </tile>
  <tile id="14">
+  <properties>
+   <property name="id" type="int" value="301"/>
+  </properties>
   <image width="163" height="149" source="19.png"/>
  </tile>
  <tile id="15">
