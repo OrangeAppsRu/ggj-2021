@@ -8,8 +8,16 @@ export default class MenuScene extends BaseScene {
 	@property(cc.AudioClip)
 	btnSound = null;
 
+	@property(cc.AudioClip)
+	backgroundMusic = null;
+
 	onLoad() {
+		cc.audioEngine.playMusic(this.backgroundMusic, true);
 		super.onLoad();
+	}
+
+	onDisable() {
+		cc.audioEngine.stopMusic();
 	}
 
 	startNewGame() {

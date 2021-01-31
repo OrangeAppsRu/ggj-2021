@@ -18,17 +18,13 @@ export default class IntroScene extends BaseScene {
 	@property(cc.SpriteFrame)
 	backgroundImage3 = null;
 
-	// @property(cc.AudioClip)
-	// slideSound1 = null;
-	//
-	// @property(cc.AudioClip)
-	// slideSound2 = null;
-	//
-	// @property(cc.AudioClip)
-	// slideSound3 = null;
+	@property(cc.AudioClip)
+	slideSound = null;
 
 	onLoad () {
 		super.onLoad();
+		cc.audioEngine.stopAll();
+		cc.audioEngine.playMusic(this.slideSound, true);
 
 		this.dialogueText = Locale.getString('introDialogue');
 		this.playedText = 0;
@@ -36,6 +32,10 @@ export default class IntroScene extends BaseScene {
 		this.processDialogue();
 
 		this.node.on(cc.Node.EventType.TOUCH_START, this.processDialogue, this);
+	}
+
+	onDisable() {
+		cc.audioEngine.stopAll();
 	}
 
 	processDialogue () {
@@ -70,22 +70,18 @@ export default class IntroScene extends BaseScene {
 
 		if (spriteComponent) {
 			let backgroundImageSpriteFrame = 1;
-			let slideSound = 1;
 
 			switch (this.playedText) {
 				case 5:
 				case 6:
 					backgroundImageSpriteFrame = 2;
-					slideSound = 1;
 					break;
 				case 7:
 					backgroundImageSpriteFrame = 3;
-					slideSound = 1;
 					break;
 			}
 
 			spriteComponent.spriteFrame = this['backgroundImage' + backgroundImageSpriteFrame];
-			// cc.audioEngine.play(this['slideSound' + slideSound, false, Config.sound]);
 		}
 	}
 }

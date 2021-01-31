@@ -10,14 +10,28 @@ export default class SoundVolume extends cc.Component {
 	@property(cc.Node)
 	knob = null;
 
+	@property(cc.AudioClip)
+	knobSound = null;
+
 	onLoad() {
 		if (cc.sys.localStorage.getItem('volume')) {
-			let volume = cc.sys.localStorage.getItem('volume');
-			Config.sound = volume;
-			this.progressBar.progress = volume;
+			Config.sound = cc.sys.localStorage.getItem('volume');
+			this.progressBar.progress = 1;
 		}
+
 		this.knob.on('touchmove', this._onTouchMoved, this);
-		this.node.on('touchend', this._onTouchEnd, this);
+		this.knob.on('touchcancel', this._onTouchCancel, this);
+		cc.audioEngine.setMusicVolume(Config.sound);
+		cc.audioEngine.setEffectsVolume(Config.sound);
+	}
+
+	onDestroy() {
+		cc.sys.localStorage.setItem('volume', Config.sound);
+	}
+
+	_onTouchCancel(event) {
+		cc.audioEngine.playEffect(this.knobSound, false);
+		cc.sys.localStorage.setItem('volume', Config.sound);
 	}
 
 	_onTouchMoved(event) {
@@ -31,10 +45,7 @@ export default class SoundVolume extends cc.Component {
 		this.progressBar.totalLength += event.getDeltaX();
 
 		Config.sound = newVal / barWidth;
-		cc.sys.localStorage.setItem('volume', Config.sound);
-	}
-
-	_onTouchEnd(event) {
-		cc.log('TOUCH FINISHED')
+		cc.audioEngine.setMusicVolume(Config.sound);
+		cc.audioEngine.setEffectsVolume(Config.sound);
 	}
 }

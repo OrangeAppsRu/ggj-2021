@@ -1846,6 +1846,9 @@
     "knob": {
       "__id__": 35
     },
+    "knobSound": {
+      "__uuid__": "b5409e34-c15a-432e-aebb-9f2d1bb3f74b"
+    },
     "_id": "b6XfkwBP1LtqSr3v9r6dO4"
   }
 ]
