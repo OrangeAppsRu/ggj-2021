@@ -15,7 +15,9 @@ export class Player{
     }
 
     set energy(amount) {
-        this._energy = amount;
+        this._energy = amount < 0 ? 0 : amount;
+
+        cc.game.emit('updatePlayer', this);
     }
 
     get oxygen() {
@@ -23,7 +25,9 @@ export class Player{
     }
 
     set oxygen(amount) {
-        this._oxygen = amount;
+        this._oxygen = amount < 0 ? 0 : amount;
+
+        cc.game.emit('updatePlayer', this);
     }
 
     get inventory() {
