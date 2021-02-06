@@ -98,6 +98,9 @@
       },
       {
         "__id__": 124
+      },
+      {
+        "__id__": 125
       }
     ],
     "_prefab": null,
@@ -4730,5 +4733,21 @@
       "__id__": 113
     },
     "_id": "e5Nd/Oob1IjpybCqzEkTOB"
+  },
+  {
+    "__type__": "7efbdUiSmtBwK5GVjUke6vb",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 2
+    },
+    "_enabled": true,
+    "_renderNode": {
+      "__id__": 35
+    },
+    "_textContainer": {
+      "__id__": 44
+    },
+    "_id": "0b9JC8RylDhJZd+y6ISSlI"
   }
 ]

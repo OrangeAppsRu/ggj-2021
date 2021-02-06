@@ -1,5 +1,3 @@
-import {Dialogue} from '../dialogues/Dialogue';
-
 const {ccclass, property} = cc._decorator;
 
 @ccclass
@@ -42,8 +40,8 @@ export class BaseWindow extends cc.Component {
 	}
 
 	playDialogue (text) {
-		this._dialogue = new Dialogue(this.node.getChildByName('description'));
-		this._dialogue.runTalk(text);
+		// this._dialogue = new Dialogue(this.node.getChildByName('description'));
+		// this._dialogue.runTalk(text);
 	};
 
 	set player (player) {

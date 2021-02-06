@@ -1,7 +1,6 @@
 import {GameMap} from "../game/GameMap";
 import {Hero} from "../game/Hero";
 import BaseScene from "./BaseScene";
-import {Dialogue} from "../dialogues/Dialogue";
 import {Player} from "../units/Player";
 import {TileInfo} from "../TileInfo";
 import {MoveController} from "../MoveController";
@@ -9,6 +8,7 @@ import {TilePrices, Tiles} from "../../TilesConfig";
 import {Locale} from '../Locale';
 import {Events} from '../../EventsConfig';
 import {Config} from "../../config";
+import StoryScene from "./StoryScene";
 
 const {ccclass, property} = cc._decorator;
 
@@ -86,10 +86,10 @@ export default class MainScene extends BaseScene {
     
     start() {
         this._ui = this.getComponent('UI');
+        this._dialogue = this.getComponent('Dialogue');
         this._player = new Player();
-        this._moveController = new MoveController(this._player, new TileInfo(TilePrices));
 
-        this._dialogue = new Dialogue(this.node.getChildByName('mainUI').getChildByName('dialogue'));
+        this._moveController = new MoveController(this._player, new TileInfo(TilePrices));
 
         if(cc.sys.localStorage.getItem('newGame')) {
             cc.sys.localStorage.removeItem('newGame');
@@ -115,10 +115,13 @@ export default class MainScene extends BaseScene {
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, (event) => {
             switch (event.keyCode) {
-                case cc.macro.KEY['e']: {
-                    cc.director.loadScene('Final');
+                case cc.macro.KEY['e']:
+                    cc.director.loadScene('Story', () => {
+                        StoryScene.instance.type = 'Final';
+                        StoryScene.instance.dialogueKey =  'finalDialogue';
+                        StoryScene.instance.onStoryEnd = () => {};
+                    });
                     break;
-                }
             }
         });
     }
