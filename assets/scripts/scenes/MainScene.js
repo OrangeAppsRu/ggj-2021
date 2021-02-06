@@ -99,16 +99,8 @@ export default class MainScene extends BaseScene {
         this._ui.setEnergy(Config.maxEnergy);
         this._ui.setOxygen(Config.maxOxygen);
 
-        cc.game.on('updatePlayer', function ( event ) {
-            this._ui.setEnergy(event.energy);
-            this._ui.setOxygen(event.oxygen);
-            this._ui.setPoints(event.points);
-        }.bind(this));
-
-
-        cc.game.on('newItem', item => {
-          this._dialogue.runTalk('' + item)
-        });
+        cc.game.on('updatePlayer', this._onUpdatePlayer, this);
+        cc.game.on('newItem', this._dialogue.runTalk, this);
 
         this._gameMap.addEntity(this._base);
         this._gameMap.addEntity(this._hero.node);
@@ -148,6 +140,12 @@ export default class MainScene extends BaseScene {
         event.stopPropagation();
 
         this._selectHero();
+    }
+
+    _onUpdatePlayer(event) {
+        this._ui.setEnergy(event.energy);
+        this._ui.setOxygen(event.oxygen);
+        this._ui.setPoints(event.points);
     }
 
     _moveEntity(tile, position) {
@@ -240,10 +238,6 @@ export default class MainScene extends BaseScene {
         if (properties) {
             if (properties.id) {
                 this._player.applyItem(properties.id);
-
-                this._ui.setEnergy(this._player.energy);
-                this._ui.setOxygen(this._player.oxygen);
-
                 this._gameMap.removeTile(tile);
                 cc.audioEngine.playEffect(this.pickupItemSound, false);
             }
