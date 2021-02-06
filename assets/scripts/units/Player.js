@@ -8,6 +8,7 @@ import {ItemsPrices} from '../../ItemsConfig';
 export class Player{
     _oxygen = Config.maxOxygen;
     _energy = Config.maxEnergy;
+    _points = 0;
     _inventory = [];
 
     get energy() {
@@ -27,6 +28,15 @@ export class Player{
     set oxygen(amount) {
         this._oxygen = Math.min(amount, Config.maxOxygen);
 
+        cc.game.emit('updatePlayer', this);
+    }
+
+    get points() {
+        return this._points;
+    }
+
+    set points(amount) {
+        this._points = amount;
         cc.game.emit('updatePlayer', this);
     }
 
@@ -51,7 +61,7 @@ export class Player{
 
         if (data) {
             if (data.points) {
-
+                this.points += data.points;
             }
 
             if (data.maxEnergy) {

@@ -102,6 +102,7 @@ export default class MainScene extends BaseScene {
         cc.game.on('updatePlayer', function ( event ) {
             this._ui.setEnergy(event.energy);
             this._ui.setOxygen(event.oxygen);
+            this._ui.setPoints(event.points);
         }.bind(this));
 
 

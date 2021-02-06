@@ -16,11 +16,21 @@ export default class UI extends cc.Component {
     })
     _oxygenLabel = null;
 
+    @property({
+        type: cc.Label,
+        visible: true
+    })
+    _pointsLabel = null;
+
     setEnergy(amount) {
-        this._energyLabel.string = `${amount}/${Config.maxEnergy}`
+        this._energyLabel.string = `${amount}/${Config.maxEnergy}`;
     }
 
     setOxygen(amount) {
-        this._oxygenLabel.string = `${amount}/${Config.maxOxygen}`
+        this._oxygenLabel.string = `${amount}/${Config.maxOxygen}`;
+    }
+
+    setPoints(amount) {
+        this._pointsLabel.string = `${amount}`;
     }
 }
