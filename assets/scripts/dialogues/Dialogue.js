@@ -30,7 +30,11 @@ export default class Dialogue extends cc.Component {
             if (event.keyCode === cc.macro.KEY.escape) {
                 this._concludeDialogue();
             }
-        })
+        }, this)
+    }
+
+    onDestroy() {
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN)
     }
 
     runTalk(key) {
