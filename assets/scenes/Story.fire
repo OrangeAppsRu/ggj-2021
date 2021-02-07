@@ -1176,6 +1176,21 @@
     "_slideSound": {
       "__uuid__": "87a8bdb5-ffe5-4297-9b25-bf52066ce790"
     },
+    "intro1": {
+      "__uuid__": "43da9b8b-8823-48c4-a3cc-3cf4573dca97"
+    },
+    "intro2": {
+      "__uuid__": "66a3d194-54b0-4ae1-b4fd-310aa6d668b5"
+    },
+    "intro3": {
+      "__uuid__": "ef09f0e1-4567-4510-b7ba-5f038b0ae958"
+    },
+    "final": {
+      "__uuid__": "10d6da07-0078-4932-9458-a86f434eb4e1"
+    },
+    "final2": {
+      "__uuid__": "9787c2e0-9cac-44f9-a764-33404b4c1193"
+    },
     "_id": "82yUkNklxClI+OXr4wKCGJ"
   },
   {
