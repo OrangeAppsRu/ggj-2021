@@ -15,6 +15,7 @@ export default class Dialogue extends cc.Component {
     })
     _textContainer = null;
 
+    _defaultChar = 1;
     _playedText = 0;
     _dialogue = {};
 
@@ -27,7 +28,7 @@ export default class Dialogue extends cc.Component {
         this._textContainer.active = false;
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, event => {
             if (event.keyCode === cc.macro.KEY.escape) {
-                this._completeSkipDialogue();
+                this._concludeDialogue();
             }
         })
     }
@@ -54,9 +55,7 @@ export default class Dialogue extends cc.Component {
             const textToShow = this._dialogue[this._playedText];
 
             if (textToShow) {
-                if (this._char) {
-                    this._char.spriteFrame = textToShow.character;
-                }
+                this._char.setSpriteFrame(textToShow.character);
 
                 if (textToShow.background) {
                     this.node.emit(Dialogue.EVENT_CHANGE_BG, textToShow.background);
@@ -65,22 +64,20 @@ export default class Dialogue extends cc.Component {
                 this._text.processDialogue(textToShow);
                 ++this._playedText;
             } else {
-                this._renderNode.off(cc.Node.EventType.TOUCH_START, this._processDialogue, this);
-                this.node.emit(Dialogue.EVENT_DIALOGUE_END, this);
-
-                if (this._textContainer) {
-                    this._textContainer.active = false;
-                }
+               this._concludeDialogue();
             }
         }
     }
 
-    _completeSkipDialogue() {
+    _concludeDialogue() {
         this._playedText = 0;
         this._renderNode.off(cc.Node.EventType.TOUCH_START, this._processDialogue, this);
+
+        this._char.setSpriteFrame(this._defaultChar);
 
         if (this._textContainer) {
             this._textContainer.active = false;
         }
+        this.node.emit(Dialogue.EVENT_DIALOGUE_END, this);
     }
 }
