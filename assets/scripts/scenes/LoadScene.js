@@ -1,6 +1,6 @@
 import BaseScene from './BaseScene';
 const {ccclass, property} = cc._decorator;
-const loadableScenes = ['Intro', 'Main', 'Menu'];
+const loadableScenes = ['Story', 'Main', 'Menu'];
 
 @ccclass
 export default class LoadScene extends BaseScene {

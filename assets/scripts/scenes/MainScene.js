@@ -1,7 +1,6 @@
 import {GameMap} from "../game/GameMap";
 import {Hero} from "../game/Hero";
 import BaseScene from "./BaseScene";
-import {Dialogue} from "../dialogues/Dialogue";
 import {Player} from "../units/Player";
 import {TileInfo} from "../TileInfo";
 import {MoveController} from "../MoveController";
@@ -9,6 +8,7 @@ import {TilePrices, Tiles} from "../../TilesConfig";
 import {Locale} from '../Locale';
 import {Events} from '../../EventsConfig';
 import {Config} from "../../config";
+import StoryScene from "./StoryScene";
 
 const {ccclass, property} = cc._decorator;
 
@@ -86,10 +86,10 @@ export default class MainScene extends BaseScene {
     
     start() {
         this._ui = this.getComponent('UI');
+        this._dialogue = this.getComponent('Dialogue');
         this._player = new Player();
-        this._moveController = new MoveController(this._player, new TileInfo(TilePrices));
 
-        this._dialogue = new Dialogue(this.node.getChildByName('mainUI').getChildByName('dialogue'));
+        this._moveController = new MoveController(this._player, new TileInfo(TilePrices));
 
         if(cc.sys.localStorage.getItem('newGame')) {
             cc.sys.localStorage.removeItem('newGame');
@@ -99,15 +99,8 @@ export default class MainScene extends BaseScene {
         this._ui.setEnergy(Config.maxEnergy);
         this._ui.setOxygen(Config.maxOxygen);
 
-        cc.game.on('updatePlayer', function ( event ) {
-            this._ui.setEnergy(event.energy);
-            this._ui.setOxygen(event.oxygen);
-        }.bind(this));
-
-
-        cc.game.on('newItem', item => {
-          this._dialogue.runTalk('' + item)
-        });
+        cc.game.on('updatePlayer', this._onUpdatePlayer, this);
+        cc.game.on('newItem', this._dialogue.runTalk, this);
 
         this._gameMap.addEntity(this._base);
         this._gameMap.addEntity(this._hero.node);
@@ -122,10 +115,13 @@ export default class MainScene extends BaseScene {
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, (event) => {
             switch (event.keyCode) {
-                case cc.macro.KEY['e']: {
-                    cc.director.loadScene('Final');
+                case cc.macro.KEY['e']:
+                    cc.director.loadScene('Story', () => {
+                        StoryScene.instance.type = 'Final';
+                        StoryScene.instance.dialogueKey =  'finalDialogue';
+                        StoryScene.instance.onStoryEnd = () => {};
+                    });
                     break;
-                }
             }
         });
     }
@@ -147,6 +143,12 @@ export default class MainScene extends BaseScene {
         event.stopPropagation();
 
         this._selectHero();
+    }
+
+    _onUpdatePlayer(event) {
+        this._ui.setEnergy(event.energy);
+        this._ui.setOxygen(event.oxygen);
+        this._ui.setPoints(event.points);
     }
 
     _moveEntity(tile, position) {
@@ -239,10 +241,6 @@ export default class MainScene extends BaseScene {
         if (properties) {
             if (properties.id) {
                 this._player.applyItem(properties.id);
-
-                this._ui.setEnergy(this._player.energy);
-                this._ui.setOxygen(this._player.oxygen);
-
                 this._gameMap.removeTile(tile);
                 cc.audioEngine.playEffect(this.pickupItemSound, false);
             }

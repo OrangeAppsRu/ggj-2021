@@ -1,5 +1,6 @@
 import BaseScene from "./BaseScene";
 import {Config} from "../../config";
+import StoryScene from "./StoryScene";
 
 const {ccclass, property} = cc._decorator;
 
@@ -22,7 +23,13 @@ export default class MenuScene extends BaseScene {
 
 	startNewGame() {
 		cc.sys.localStorage.setItem('newGame', true);
-		cc.director.loadScene('Intro');
+		cc.director.loadScene('Story', () => {
+			StoryScene.instance.type = 'Intro';
+			StoryScene.instance.dialogueKey = 'introDialogue';
+			StoryScene.instance.onStoryEnd = function() {
+				cc.director.loadScene('Main');
+			}
+		});
 	}
 
 	resumeGame() {
